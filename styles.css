@@ -13,7 +13,7 @@
   --accent-2: #2a7f7a;
   --gold: #d4a94e;
   --rule: #e2d7c1;
-  --code-bg: #2b2418;
+  --code-bg: #1f1a12;            /* was #2b2418 — no longer identical to --ink */
   --code-text: #f3ead8;
   --cover-bg-1: #2a5f5a;
   --cover-bg-2: #16302e;
@@ -161,6 +161,13 @@ pre.code-example {
   line-height: 1.6;
   margin: 18px 0;
   box-shadow: inset 0 0 0 1px rgba(255,255,255,.03);
+}
+/* Everything nested inside a code block must use the code palette,
+   otherwise heading/strong/em/link colours leak through and can
+   land on a background of the same hue (invisible text). */
+pre.code-example :is(h1, h2, h3, h4, strong, em, a, code) {
+  color: inherit;
+  background: none;
 }
 code {
   font-family: var(--font-mono);
