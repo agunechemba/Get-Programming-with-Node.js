@@ -1,0 +1,3026 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Get Programming with Node.js — A Storybook</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="icon" type="image/svg+xml" href="https://pph.name.ng/pphlogo.svg">
+</head>
+<body>
+
+<!-- ============================================================
+     COVER
+     ============================================================ -->
+<section class="book-page cover-page" id="cover">
+  <p class="cover-series">All-in-One</p>
+  <h1>Get Programming with Node.js</h1>
+  <p class="cover-subtitle">A hands-on guide to building web applications with Node.js, Express, MongoDB, and Socket.io.</p>
+  <p class="cover-author">By Jonathan Wexler</p>
+  <p class="cover-note">Nine units. Thirty-seven lessons. One language of the web — from first server to full-stack application.</p>
+  <button class="nav-button" data-nav="next">Begin the Journey →</button>
+  <div class="cover-credit">
+    Refactored &amp; illustrated by<br>
+    <a href="https://agunechemba.name.ng" target="_blank" rel="noopener">Agunechemba Ekene</a>
+  </div>
+</section>
+
+<!-- ============================================================
+     TABLE OF CONTENTS
+     ============================================================ -->
+<section class="book-page toc-page" id="toc">
+  <h2>Table of Contents</h2>
+  <p>Where would you like to begin?</p>
+
+  <h3 class="toc-part">Unit 0: Getting Set Up</h3>
+  <ol>
+    <li><a href="#ch-setting-up-nodejs-and-the-javascript-engine">Setting up Node.js and the JavaScript engine</a></li>
+    <li><a href="#ch-configuring-your-environment">Configuring your environment</a></li>
+    <li><a href="#ch-running-a-nodejs-application">Running a Node.js application</a></li>
+  </ol>
+
+  <h3 class="toc-part">Unit 1: Getting Started with Node.js</h3>
+  <ol start="3">
+    <li><a href="#ch-creating-a-nodejs-module">Creating a Node.js module</a></li>
+    <li><a href="#ch-building-a-simple-web-server-in-nodejs">Building a simple web server in Node.js</a></li>
+    <li><a href="#ch-handling-incoming-data">Handling incoming data</a></li>
+    <li><a href="#ch-writing-better-routes-and-serving-external-files">Writing better routes and serving external files</a></li>
+    <li><a href="#ch-capstone-creating-your-first-web-application">Capstone: Creating your first web application</a></li>
+  </ol>
+
+  <h3 class="toc-part">Unit 2: Easier Web Development with Express.js</h3>
+  <ol start="8">
+    <li><a href="#ch-setting-up-an-app-with-expressjs">Setting up an app with Express.js</a></li>
+    <li><a href="#ch-routing-in-expressjs">Routing in Express.js</a></li>
+    <li><a href="#ch-connecting-views-with-templates">Connecting views with templates</a></li>
+    <li><a href="#ch-configurations-and-error-handling">Configurations and error handling</a></li>
+    <li><a href="#ch-capstone-enhancing-the-confetti-cuisine-site-with-expressjs">Capstone: Enhancing the Confetti Cuisine site with Express.js</a></li>
+  </ol>
+
+  <h3 class="toc-part">Unit 3: Connecting to a Database</h3>
+  <ol start="13">
+    <li><a href="#ch-setting-up-a-mongodb-database">Setting up a MongoDB database</a></li>
+    <li><a href="#ch-building-models-with-mongoose">Building models with Mongoose</a></li>
+    <li><a href="#ch-connecting-controllers-and-models">Connecting controllers and models</a></li>
+    <li><a href="#ch-capstone-saving-user-subscriptions">Capstone: Saving user subscriptions</a></li>
+  </ol>
+
+  <h3 class="toc-part">Unit 4: Building a User Model</h3>
+  <ol start="17">
+    <li><a href="#ch-improving-your-data-models">Improving your data models</a></li>
+    <li><a href="#ch-building-the-user-model">Building the user model</a></li>
+    <li><a href="#ch-creating-and-reading-your-models">Creating and reading your models</a></li>
+    <li><a href="#ch-updating-and-deleting-your-models">Updating and deleting your models</a></li>
+    <li><a href="#ch-capstone-adding-crud-models-to-confetti-cuisine">Capstone: Adding CRUD models to Confetti Cuisine</a></li>
+  </ol>
+
+  <h3 class="toc-part">Unit 5: Authenticating User Accounts</h3>
+  <ol start="22">
+    <li><a href="#ch-adding-sessions-and-flash-messages">Adding sessions and flash messages</a></li>
+    <li><a href="#ch-building-a-user-login-and-hashing-passwords">Building a user login and hashing passwords</a></li>
+    <li><a href="#ch-adding-user-authentication">Adding user authentication</a></li>
+    <li><a href="#ch-capstone-adding-user-authentication-to-confetti-cuisine">Capstone: Adding user authentication to Confetti Cuisine</a></li>
+  </ol>
+
+  <h3 class="toc-part">Unit 6: Building an API</h3>
+  <ol start="26">
+    <li><a href="#ch-adding-an-api-to-your-application">Adding an API to your application</a></li>
+    <li><a href="#ch-accessing-your-api-from-your-application">Accessing your API from your application</a></li>
+    <li><a href="#ch-adding-api-security">Adding API security</a></li>
+    <li><a href="#ch-capstone-implementing-an-api">Capstone: Implementing an API</a></li>
+  </ol>
+
+  <h3 class="toc-part">Unit 7: Adding Chat Functionality</h3>
+  <ol start="30">
+    <li><a href="#ch-working-with-socketio">Working with Socket.io</a></li>
+    <li><a href="#ch-saving-chat-messages">Saving chat messages</a></li>
+    <li><a href="#ch-adding-a-chat-notification-indicator">Adding a chat notification indicator</a></li>
+    <li><a href="#ch-capstone-adding-a-chat-feature-to-confetti-cuisine">Capstone: Adding a chat feature to Confetti Cuisine</a></li>
+  </ol>
+
+  <h3 class="toc-part">Unit 8: Deploying and Managing Code in Production</h3>
+  <ol start="34">
+    <li><a href="#ch-deploying-your-application">Deploying your application</a></li>
+    <li><a href="#ch-managing-in-production">Managing in production</a></li>
+    <li><a href="#ch-testing-your-application">Testing your application</a></li>
+    <li><a href="#ch-capstone-deploying-confetti-cuisine">Capstone: Deploying Confetti Cuisine</a></li>
+  </ol>
+
+  <h3 class="toc-part">Appendix</h3>
+  <ol start="38">
+    <li><a href="#ch-javascript-syntax-introduced-in-es6">JavaScript syntax introduced in ES6</a></li>
+    <li><a href="#ch-logging-and-using-nodejs-global-objects">Logging and using Node.js global objects</a></li>
+  </ol>
+
+  <div class="book-nav">
+    <button class="nav-button" data-nav="prev">← Cover</button>
+    <button class="nav-button" data-nav="next">Unit 0 →</button>
+  </div>
+</section>
+
+<!-- ============================================================
+     INTRODUCTION
+     ============================================================ -->
+<section class="book-page chapter-page" id="intro">
+  <div class="chapter-header">
+    <p class="chapter-part">Introduction</p>
+    <h2>Why Learn Node.js?</h2>
+    <p class="chapter-tagline">One language, one runtime, one complete web application</p>
+  </div>
+
+  <div class="chapter-story">
+    <p>Nearly a quarter century after the internet became a public-facing tool, the tech job market has never been larger. From startups to large corporations, nearly all entities are looking for an online presence. You don't need a computer-science degree to meet the needs of the market — most of the skills you need can be acquired through open-source technologies.</p>
+    <p>Node.js is a platform for interpreting JavaScript code and running applications. It uses Google Chrome's V8 JavaScript engine to execute code on the server, without a browser. JavaScript can now handle incoming application data and database communications — jobs once reserved for languages such as C, Java, Python, and Ruby.</p>
+    <p>This book is divided into short, digestible lessons. Each unit guides you through a core concept in web development, with instructions on how to apply code and build your own application. You start by building a web server from scratch, then add Express.js, connect a MongoDB database, build CRUD models, authenticate users, create an API, add live chat with Socket.io, and finally deploy to production.</p>
+    <p>By the end, you'll have a fully functioning application published on the internet. The work you produce could spark ideas for a new application, become the start of a product for your business, or showcase your development skills as a personal portfolio piece.</p>
+    <p>Be ambitious while tackling the exercises. Ask questions where you get stuck, and communicate with other readers. With a little practice and determination, you'll soon be demonstrating your Node.js talent to the sea of developer-hungry organizations.</p>
+  </div>
+
+  <div class="chapter-ideas">
+    <h3>Key Ideas</h3>
+    <ul>
+      <li>Node.js is an asynchronous, event-driven JavaScript runtime that uses Chrome's V8 engine.</li>
+      <li>JavaScript can now be used on both the client and the server, making full-stack development possible with one language.</li>
+      <li>The book is project-based: you build the Confetti Cuisine application step by step, from a simple server to a deployed full-stack app.</li>
+      <li>Learning is incremental — each unit builds on the previous one.</li>
+    </ul>
+  </div>
+
+  <div class="chapter-questions">
+    <h3>Try It Yourself</h3>
+    <ol>
+      <li>What does it mean that Node.js is "asynchronous" and "event-driven"?</li>
+      <li>Why is using a single language (JavaScript) for both client and server an advantage?</li>
+      <li>What kind of application will you build by the end of this book?</li>
+    </ol>
+  </div>
+
+  <div class="book-nav">
+    <button class="nav-button" data-nav="prev">← Table of Contents</button>
+    <button class="nav-button" data-nav="next">Unit 0 →</button>
+  </div>
+</section>
+
+<!-- ============================================================
+     UNIT 0 DIVIDER
+     ============================================================ -->
+<section class="book-page cover-page part-page" id="unit-zero">
+  <p class="part-number">Unit 0</p>
+  <h1>Getting Set Up</h1>
+  <p class="part-desc">Install Node.js, configure your environment, and run your first JavaScript file.</p>
+  <button class="nav-button" data-nav="next">Begin Lesson 0 →</button>
+</section>
+
+<!-- ============================================================
+     LESSON 0 — SETTING UP NODE.JS AND THE JAVASCRIPT ENGINE
+     ============================================================ -->
+<section class="book-page chapter-page" id="ch-setting-up-nodejs-and-the-javascript-engine">
+  <div class="chapter-header">
+    <p class="chapter-part">Part 0 · Getting Set Up · Chapter 0</p>
+    <h2>Setting Up Node.js and the JavaScript Engine</h2>
+    <p class="chapter-tagline">What Node.js is and why it matters</p>
+  </div>
+
+  <div class="chapter-story">
+    <p>Node.js is a platform for interpreting JavaScript code and running applications. JavaScript has been around for a couple of decades; with every improvement, it has shifted further from being a client-side scripting language to a full-fledged server-side programming language for managing data.</p>
+    <p>Because Node.js is built with Google Chrome's JavaScript engine (V8), it's considered powerful and able to support JavaScript as a server-side language. Developers can now commit to mastering JavaScript to build a complete web application instead of having to master multiple languages.</p>
+    <p>Node.js operates on an event loop using a single thread. A thread is the bundle of computing power and resources needed for the execution of a programmed task. Node.js handles only one task at a time and uses more threads only for tasks that can't be handled by the main thread. This makes Node.js fast and efficient for most web applications.</p>
+    <p>Web development can largely be broken into two categories: client-side (front-end) code that results in something the user sees in the browser, and server-side (back-end) code used for application logic. Node.js blurs the line by allowing JavaScript on both sides.</p>
+    <p>Node.js is popular for real-time applications that persistently listen for data being sent back and forth. The event loop can be thought of as an office manager: it handles incoming messages and tasks, always working on one task at a time and offloading larger tasks when necessary.</p>
+  </div>
+
+  <pre class="code-example"><code>// Example of asynchronous flow
+callMe();
+document.body.style.background = "green";
+console.log("my comment");
+
+function callMe() {
+  setTimeout(function() {
+    console.log("function called");
+  }, 1000);
+}</code></pre>
+
+  <div class="chapter-ideas">
+    <h3>Key Ideas</h3>
+    <ul>
+      <li>Node.js is an asynchronous, event-driven runtime built on Chrome's V8 engine.</li>
+      <li>JavaScript can be used on both client and server, enabling full-stack development with one language.</li>
+      <li>The event loop handles tasks on a single thread, offloading heavier work when needed.</li>
+      <li>Client-side code handles browser interaction; server-side code handles application logic and data.</li>
+    </ul>
+  </div>
+
+  <div class="chapter-questions">
+    <h3>Try It Yourself</h3>
+    <ol>
+      <li>In your own words, what does it mean that Node.js is "event-driven"?</li>
+      <li>What is the difference between client-side and server-side code?</li>
+      <li>Why is a single-threaded event loop sufficient for most web applications?</li>
+    </ol>
+  </div>
+
+  <div class="book-nav">
+    <button class="nav-button" data-nav="prev">← Unit 0</button>
+    <button class="nav-button" data-nav="next">Configuring your environment →</button>
+  </div>
+</section>
+
+<!-- ============================================================
+     LESSON 1 — CONFIGURING YOUR ENVIRONMENT
+     ============================================================ -->
+<section class="book-page chapter-page" id="ch-configuring-your-environment">
+  <div class="chapter-header">
+    <p class="chapter-part">Part 0 · Getting Set Up · Chapter 1</p>
+    <h2>Configuring Your Environment</h2>
+    <p class="chapter-tagline">Install Node.js, a text editor, and the tools you'll need</p>
+  </div>
+
+  <div class="chapter-story">
+    <p>Node.js is growing in popularity and support. New versions are deployed frequently, and it's important to stay up to date. At the time of writing, the version of Node.js to download is 11.0.0 or later.</p>
+    <p>The simplest way to install Node.js is to go to the download page at nodejs.org and follow the instructions for your platform. Alternatively, you can use a version manager (NVM) to handle multiple versions.</p>
+    <p>When you install Node.js, you also get npm, the Node.js ecosystem of external libraries. npm is similar to pip in Python and gem in Ruby. You'll use npm throughout the book to install packages.</p>
+    <p>For writing code, the book recommends the Atom text editor, a free open-source application developed by GitHub. Atom offers many plugins written in Node.js and helps you write applications with ease.</p>
+    <p>You also need Git for version control and the Heroku CLI for deployment. Git lets you take snapshots of your code so you can return to a working state quickly. Heroku is a cloud service you'll use to host your application online.</p>
+    <p>Finally, you can use the Node.js REPL (Read-Evaluate-Print Loop) in your terminal to run JavaScript code interactively. Type <code>node</code> in a terminal window to enter the REPL, and type <code>.exit</code> or press Ctrl-C twice to leave.</p>
+  </div>
+
+  <pre class="code-example"><code># Install Homebrew on macOS
+/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+
+# Check Node.js version
+node -v
+
+# Check npm version
+npm -v</code></pre>
+
+  <div class="chapter-ideas">
+    <h3>Key Ideas</h3>
+    <ul>
+      <li>Node.js can be installed from the official website or via a version manager like NVM.</li>
+      <li>npm comes bundled with Node.js and is used to install external packages.</li>
+      <li>A text editor (Atom is recommended) is essential for writing code.</li>
+      <li>Git and the Heroku CLI are needed for version control and deployment.</li>
+      <li>The Node.js REPL lets you run JavaScript interactively in the terminal.</li>
+    </ul>
+  </div>
+
+  <div class="chapter-questions">
+    <h3>Try It Yourself</h3>
+    <ol>
+      <li>What is npm, and why is it useful?</li>
+      <li>How do you enter and exit the Node.js REPL?</li>
+      <li>Why is version control (Git) important for development?</li>
+    </ol>
+  </div>
+
+  <div class="book-nav">
+    <button class="nav-button" data-nav="prev">← Setting up Node.js</button>
+    <button class="nav-button" data-nav="next">Running a Node.js application →</button>
+  </div>
+</section>
+
+<!-- ============================================================
+     LESSON 2 — RUNNING A NODE.JS APPLICATION
+     ============================================================ -->
+<section class="book-page chapter-page" id="ch-running-a-nodejs-application">
+  <div class="chapter-header">
+    <p class="chapter-part">Part 0 · Getting Set Up · Chapter 2</p>
+    <h2>Running a Node.js Application</h2>
+    <p class="chapter-tagline">Write your first JavaScript file and run it with Node.js</p>
+  </div>
+
+  <div class="chapter-story">
+    <p>To get started with your first Node.js application, create a JavaScript file to print a message to the terminal console. Open your text editor, type <code>console.log("Hello, Universe!");</code>, and save the file as <code>hello.js</code>.</p>
+    <p>To run the file, open a terminal window, navigate to the file's location, and enter <code>node hello.js</code> (or just <code>node hello</code>). You should see <code>Hello, Universe!</code> printed on the screen. The <code>console.log</code> function outputs the result of any JavaScript command to the console window.</p>
+    <p>You can also run individual JavaScript commands in the REPL. Start the REPL by typing <code>node</code>, then enter commands directly. For example, you can perform arithmetic, define variables, or load a file with <code>.load messages.js</code>.</p>
+    <p>Strict mode is a feature that catches casual JavaScript mistakes. Add <code>"use strict";</code> to the top of every JavaScript file you write. Strict mode prevents accidental global variables and other common errors.</p>
+    <p>In the REPL, you can use <code>.load</code> to bring a file's contents into the session, and <code>.save</code> to save your REPL session to a file. These commands make the REPL a powerful sandbox for testing code.</p>
+  </div>
+
+  <pre class="code-example"><code>// hello.js
+"use strict";
+console.log("Hello, Universe!");
+
+// messages.js
+let messages = [
+  "A change of environment can be a good thing!",
+  "You will make it!",
+  "Just run with the code!"
+];
+
+// In REPL
+// > .load messages.js
+// > messages.forEach(message => console.log(message));</code></pre>
+
+  <div class="chapter-ideas">
+    <h3>Key Ideas</h3>
+    <ul>
+      <li>JavaScript files are run with Node.js by prefixing the filename with <code>node</code>.</li>
+      <li>The REPL lets you run JavaScript interactively and load files with <code>.load</code>.</li>
+      <li>Strict mode (<code>"use strict";</code>) catches common mistakes and should be used in every file.</li>
+      <li><code>console.log</code> is the primary tool for outputting information and debugging.</li>
+    </ul>
+  </div>
+
+  <div class="chapter-questions">
+    <h3>Try It Yourself</h3>
+    <ol>
+      <li>Create a file called <code>printer.js</code> that uses string interpolation to print a message.</li>
+      <li>Load a JavaScript file into the REPL and run a function from it.</li>
+      <li>What happens if you run <code>.save</code> with a filename that already exists?</li>
+    </ol>
+  </div>
+
+  <div class="book-nav">
+    <button class="nav-button" data-nav="prev">← Configuring your environment</button>
+    <button class="nav-button" data-nav="next">Unit 1 →</button>
+  </div>
+</section>
+
+<!-- ============================================================
+     UNIT 1 DIVIDER
+     ============================================================ -->
+<section class="book-page cover-page part-page part-two" id="unit-one">
+  <p class="part-number">Unit 1</p>
+  <h1>Getting Started with Node.js</h1>
+  <p class="part-desc">Build your first web server and learn the fundamentals of Node.js modules, routing, and static file serving.</p>
+  <button class="nav-button" data-nav="next">Begin Lesson 3 →</button>
+</section>
+
+<!-- ============================================================
+     LESSON 3 — CREATING A NODE.JS MODULE
+     ============================================================ -->
+<section class="book-page chapter-page" id="ch-creating-a-nodejs-module">
+  <div class="chapter-header">
+    <p class="chapter-part">Part 1 · Getting Started with Node.js · Chapter 3</p>
+    <h2>Creating a Node.js Module</h2>
+    <p class="chapter-tagline">Organize code into reusable modules with exports and require</p>
+  </div>
+
+  <div class="chapter-story">
+    <p>A Node.js application is made up of many JavaScript files. To stay organized, these files need to access one another's contents when necessary. Each JavaScript file or folder containing a code library is called a module.</p>
+    <p>To share code from a module, you add properties to the <code>exports</code> object. For example, <code>exports.messages = ["You are great!", ...]</code> makes the <code>messages</code> array available to other files.</p>
+    <p>To import a module, use the <code>require</code> function. <code>require("./messages")</code> looks for a file called <code>messages.js</code> in the same directory and returns its exports object.</p>
+    <p>With your installation of Node.js, you also got npm, a package manager for Node.js. npm is responsible for managing external packages — modules that others built and made available online. You use npm to install, remove, and modify these packages.</p>
+    <p>To initialize a new Node.js application, run <code>npm init</code> in your project directory. This creates a <code>package.json</code> file that defines the properties of your project, including its dependencies.</p>
+    <p>You can install packages with <code>npm install &lt;package&gt; --save</code>. The <code>--save</code> flag adds the package to your <code>package.json</code> dependencies. For example, the <code>cities</code> package converts ZIP codes to location coordinates.</p>
+  </div>
+
+  <pre class="code-example"><code>// messages.js
+exports.messages = ["You are great!", "You can accomplish anything!", "Success is in your future!"];
+
+// printMessages.js
+const messageModule = require("./messages");
+messageModule.messages.forEach(m => console.log(m));
+
+// main.js — using the cities package
+const cities = require("cities");
+var myCity = cities.zip_lookup("10016");
+console.log(myCity);</code></pre>
+
+  <div class="chapter-ideas">
+    <h3>Key Ideas</h3>
+    <ul>
+      <li>Modules are individual JavaScript files that can share code via the <code>exports</code> object.</li>
+      <li><code>require()</code> imports modules into the current file.</li>
+      <li><code>package.json</code> defines a project's metadata and dependencies.</li>
+      <li><code>npm init</code> initializes a new project; <code>npm install</code> adds packages.</li>
+      <li>Modules, packages, and dependencies are the building blocks of Node.js applications.</li>
+    </ul>
+  </div>
+
+  <div class="chapter-questions">
+    <h3>Try It Yourself</h3>
+    <ol>
+      <li>Create a module that exports a function to add two numbers, and use it in another file.</li>
+      <li>What is the difference between a module, a package, and a dependency?</li>
+      <li>How do you initialize a Node.js application and install a package?</li>
+    </ol>
+  </div>
+
+  <div class="book-nav">
+    <button class="nav-button" data-nav="prev">← Unit 1</button>
+    <button class="nav-button" data-nav="next">Building a simple web server →</button>
+  </div>
+</section>
+
+<!-- ============================================================
+     LESSON 4 — BUILDING A SIMPLE WEB SERVER IN NODE.JS
+     ============================================================ -->
+<section class="book-page chapter-page" id="ch-building-a-simple-web-server-in-nodejs">
+  <div class="chapter-header">
+    <p class="chapter-part">Part 1 · Getting Started with Node.js · Chapter 4</p>
+    <h2>Building a Simple Web Server in Node.js</h2>
+    <p class="chapter-tagline">Use the http module to create a server that responds to requests</p>
+  </div>
+
+  <div class="chapter-story">
+    <p>Web servers are the foundation of most Node.js web applications. They allow you to load images and HTML pages to users. A web server is software designed to respond to requests over the internet by loading or processing data.</p>
+    <p>Web servers follow the Hypertext Transfer Protocol (HTTP). The two most widely used HTTP methods are GET (requests information) and POST (sends information to the server). Most web applications have adopted HTTPS, which encrypts data transmission.</p>
+    <p>Node.js comes with a built-in <code>http</code> module that you can use to build a web server. You create a server with <code>http.createServer()</code>, passing a callback function that runs whenever a request is received. The callback receives <code>req</code> (request) and <code>res</code> (response) objects.</p>
+    <p>To send a response, you use <code>res.writeHead()</code> to set the HTTP status code and headers, then <code>res.write()</code> to write the body, and <code>res.end()</code> to close the connection. You must call <code>end()</code>, or the client will hang.</p>
+    <p>Finally, call <code>app.listen(port)</code> to start the server. Port 3000 is commonly used for development. You can stop the server by pressing Ctrl-C in the terminal.</p>
+  </div>
+
+  <pre class="code-example"><code>const port = 3000,
+  http = require("http"),
+  httpStatus = require("http-status-codes"),
+  app = http.createServer((req, res) => {
+    console.log("Received an incoming request!");
+    res.writeHead(httpStatus.OK, {
+      "Content-Type": "text/html"
+    });
+    let responseMessage = "<h1>Hello, Universe!</h1>";
+    res.write(responseMessage);
+    res.end();
+    console.log(`Sent a response: ${responseMessage}`);
+  });
+
+app.listen(port);
+console.log(`The server has started and is listening on port number: ${port}`);</code></pre>
+
+  <div class="chapter-ideas">
+    <h3>Key Ideas</h3>
+    <ul>
+      <li>Node.js's <code>http</code> module lets you create a web server with minimal code.</li>
+      <li>HTTP requests and responses follow a standardized protocol with methods like GET and POST.</li>
+      <li>The <code>createServer</code> callback receives request and response objects.</li>
+      <li><code>res.writeHead()</code>, <code>res.write()</code>, and <code>res.end()</code> compose a response.</li>
+      <li>Callbacks are central to Node.js's asynchronous, non-blocking behavior.</li>
+    </ul>
+  </div>
+
+  <div class="chapter-questions">
+    <h3>Try It Yourself</h3>
+    <ol>
+      <li>What does a web server receive from the client, and what does it send back?</li>
+      <li>Why should you use <code>const</code> instead of <code>var</code> for the HTTP server variable?</li>
+      <li>What type of HTTP request are you making when you visit <code>http://localhost:3000/</code>?</li>
+    </ol>
+  </div>
+
+  <div class="book-nav">
+    <button class="nav-button" data-nav="prev">← Creating a Node.js module</button>
+    <button class="nav-button" data-nav="next">Handling incoming data →</button>
+  </div>
+</section>
+
+<!-- ============================================================
+     LESSON 5 — HANDLING INCOMING DATA
+     ============================================================ -->
+<section class="book-page chapter-page" id="ch-handling-incoming-data">
+  <div class="chapter-header">
+    <p class="chapter-part">Part 1 · Getting Started with Node.js · Chapter 5</p>
+    <h2>Handling Incoming Data</h2>
+    <p class="chapter-tagline">Collect request data and build your first routes</p>
+  </div>
+
+  <div class="chapter-story">
+    <p>Every time a user visits a URL that leads to your application, a request is made. You can gather and process information from these requests by examining the request object.</p>
+    <p>Each request object has a <code>url</code> property and a <code>method</code> property. You can log these to see which URL and HTTP method the client used. For POST requests, the data lives in the request body and arrives in chunks. You listen for <code>data</code> events and collect the chunks into an array, then convert the array to a string when the <code>end</code> event fires.</p>
+    <p>Routes let you determine how your application should respond to a request made to a specific URL. A route maps a URL path to a response. You can create a simple route map object and check <code>req.url</code> against it.</p>
+    <p>You can also test POST requests with the <code>curl</code> command. <code>curl --data "username=Jon&password=secret" http://localhost:3000</code> sends a POST request with form data.</p>
+  </div>
+
+  <pre class="code-example"><code>const routeResponseMap = {
+  "/info": "<h1>Info Page</h1>",
+  "/contact": "<h1>Contact Us</h1>",
+  "/about": "<h1>Learn More About Us.</h1>",
+  "/hello": "<h1>Say hello by emailing us here</h1>",
+  "/error": "<h1>Sorry the page you are looking for is not here.</h1>"
+};
+
+const app = http.createServer((req, res) => {
+  res.writeHead(200, { "Content-Type": "text/html" });
+  if (routeResponseMap[req.url]) {
+    res.end(routeResponseMap[req.url]);
+  } else {
+    res.end("<h1>Welcome!</h1>");
+  }
+});</code></pre>
+
+  <div class="chapter-ideas">
+    <h3>Key Ideas</h3>
+    <ul>
+      <li>Request data can be accessed via <code>req.url</code>, <code>req.method</code>, and the request body.</li>
+      <li>POST data arrives in chunks; you must collect them and concatenate them into a string.</li>
+      <li>Routes map URL paths to specific responses, enabling different content for different pages.</li>
+      <li><code>curl</code> is a command-line tool for testing HTTP requests.</li>
+    </ul>
+  </div>
+
+  <div class="chapter-questions">
+    <h3>Try It Yourself</h3>
+    <ol>
+      <li>What is the name of the function your server calls every time a request is received?</li>
+      <li>True or false: Every submitted form sends its full contents in a single chunk of data.</li>
+      <li>With what URL do you route requests to the home page?</li>
+    </ol>
+  </div>
+
+  <div class="book-nav">
+    <button class="nav-button" data-nav="prev">← Building a simple web server</button>
+    <button class="nav-button" data-nav="next">Writing better routes and serving external files →</button>
+  </div>
+</section>
+
+<!-- ============================================================
+     LESSON 6 — WRITING BETTER ROUTES AND SERVING EXTERNAL FILES
+     ============================================================ -->
+<section class="book-page chapter-page" id="ch-writing-better-routes-and-serving-external-files">
+  <div class="chapter-header">
+    <p class="chapter-part">Part 1 · Getting Started with Node.js · Chapter 6</p>
+    <h2>Writing Better Routes and Serving External Files</h2>
+    <p class="chapter-tagline">Serve HTML files, images, CSS, and JavaScript with the fs module</p>
+  </div>
+
+  <div class="chapter-story">
+    <p>Instead of embedding HTML in your server code, you can store HTML files in a <code>views</code> folder and serve them with the <code>fs</code> (file system) module. <code>fs.readFile()</code> reads a file's contents and passes them to a callback.</p>
+    <p>You can create a route map that pairs URLs with file paths. When a request comes in, you look up the URL, read the corresponding file, and send its contents as the response.</p>
+    <p>To serve assets like images, CSS, and client-side JavaScript, create a <code>public</code> folder with subfolders for <code>images</code>, <code>css</code>, and <code>js</code>. Then create routes that check the file extension and set the appropriate Content-Type header.</p>
+    <p>As your application grows, it's best to move your routes into a separate module (<code>router.js</code>). This module can export a <code>handle</code> function that processes requests, and <code>get</code> and <code>post</code> functions that register new routes.</p>
+    <p>The <code>handle</code> function checks <code>routes[req.method][req.url]</code> and calls the matching callback. If no route matches, it responds with a 404 error. The <code>get</code> and <code>post</code> functions add entries to the routes object.</p>
+  </div>
+
+  <pre class="code-example"><code>// router.js
+const httpStatus = require("http-status-codes"),
+  htmlContentType = { "Content-Type": "text/html" },
+  routes = { "GET": {}, "POST": {} };
+
+exports.handle = (req, res) => {
+  try {
+    if (routes[req.method][req.url]) {
+      routes[req.method][req.url](req, res);
+    } else {
+      res.writeHead(httpStatus.NOT_FOUND, htmlContentType);
+      res.end("<h1>No such file exists</h1>");
+    }
+  } catch (ex) {
+    console.log("error: " + ex);
+  }
+};
+
+exports.get = (url, action) => {
+  routes["GET"][url] = action;
+};
+
+exports.post = (url, action) => {
+  routes["POST"][url] = action;
+};</code></pre>
+
+  <div class="chapter-ideas">
+    <h3>Key Ideas</h3>
+    <ul>
+      <li>The <code>fs</code> module reads files from the filesystem and serves them to clients.</li>
+      <li>Organize views (HTML) and public assets (CSS, JS, images) into separate folders.</li>
+      <li>Routes can be moved into a separate module for cleaner code organization.</li>
+      <li>Content-Type headers tell the browser what kind of file is being sent.</li>
+      <li>A catch-all route handles 404 errors.</li>
+    </ul>
+  </div>
+
+  <div class="chapter-questions">
+    <h3>Try It Yourself</h3>
+    <ol>
+      <li>What happens if you try to read a file that doesn't exist?</li>
+      <li>What should your default response be if a route isn't found?</li>
+      <li>True or false: Functions and objects that aren't added to a module's <code>exports</code> object are still accessible by other files.</li>
+    </ol>
+  </div>
+
+  <div class="book-nav">
+    <button class="nav-button" data-nav="prev">← Handling incoming data</button>
+    <button class="nav-button" data-nav="next">Capstone: Creating your first web application →</button>
+  </div>
+</section>
+
+<!-- ============================================================
+     LESSON 7 — CAPSTONE: CREATING YOUR FIRST WEB APPLICATION
+     ============================================================ -->
+<section class="book-page chapter-page" id="ch-capstone-creating-your-first-web-application">
+  <div class="chapter-header">
+    <p class="chapter-part">Part 1 · Getting Started with Node.js · Chapter 7</p>
+    <h2>Capstone: Creating Your First Web Application</h2>
+    <p class="chapter-tagline">Build a complete multipage site for Confetti Cuisine</p>
+  </div>
+
+  <div class="chapter-story">
+    <p>In this capstone, you build a static website for a cooking school called Confetti Cuisine. The site has five views: index (home), courses, contact, thanks, and error. Each view has a clickable image that can be served independently.</p>
+    <p>You start by initializing the application with <code>npm init</code> and installing <code>http-status-codes</code>. Then you create the project directory structure: <code>views</code> for HTML, <code>public</code> for assets (images, CSS, JS), and a <code>router.js</code> for routing.</p>
+    <p>The <code>main.js</code> file sets up the server and registers routes with the router. Each route reads the corresponding HTML file or asset and serves it. The contact form posts to the home route, which responds with a thank-you page.</p>
+    <p>You also create custom styles in <code>confetti_cuisine.css</code> and add images to <code>public/images</code>. The router handles all requests through its <code>handle</code> function, and you register routes with <code>router.get</code> and <code>router.post</code>.</p>
+  </div>
+
+  <pre class="code-example"><code>// main.js
+router.get("/", (req, res) => {
+  res.writeHead(httpStatus.OK, contentTypes.html);
+  utils.getFile("views/index.html", res);
+});
+router.get("/courses.html", (req, res) => {
+  res.writeHead(httpStatus.OK, contentTypes.html);
+  utils.getFile("views/courses.html", res);
+});
+router.get("/contact.html", (req, res) => {
+  res.writeHead(httpStatus.OK, contentTypes.html);
+  utils.getFile("views/contact.html", res);
+});
+router.post("/", (req, res) => {
+  res.writeHead(httpStatus.OK, contentTypes.html);
+  utils.getFile("views/thanks.html", res);
+});
+http.createServer(router.handle).listen(port);</code></pre>
+
+  <div class="chapter-ideas">
+    <h3>Key Ideas</h3>
+    <ul>
+      <li>A complete web application combines routing, views, and static assets.</li>
+      <li>The router module centralizes route registration and request handling.</li>
+      <li>Views and assets are served from organized directories.</li>
+      <li>A POST route can handle form submissions and respond with a confirmation page.</li>
+    </ul>
+  </div>
+
+  <div class="chapter-questions">
+    <h3>Try It Yourself</h3>
+    <ol>
+      <li>What files and folders make up the Confetti Cuisine project structure?</li>
+      <li>How does the router know which callback to run for a given request?</li>
+      <li>What happens when a user submits the contact form?</li>
+    </ol>
+  </div>
+
+  <div class="book-nav">
+    <button class="nav-button" data-nav="prev">← Writing better routes</button>
+    <button class="nav-button" data-nav="next">Unit 2 →</button>
+  </div>
+</section>
+
+<!-- ============================================================
+     UNIT 2 DIVIDER
+     ============================================================ -->
+<section class="book-page cover-page part-page part-three" id="unit-two">
+  <p class="part-number">Unit 2</p>
+  <h1>Easier Web Development with Express.js</h1>
+  <p class="part-desc">Use a web framework to build applications faster with less boilerplate.</p>
+  <button class="nav-button" data-nav="next">Begin Lesson 8 →</button>
+</section>
+
+<!-- ============================================================
+     LESSON 8 — SETTING UP AN APP WITH EXPRESS.JS
+     ============================================================ -->
+<section class="book-page chapter-page" id="ch-setting-up-an-app-with-expressjs">
+  <div class="chapter-header">
+    <p class="chapter-part">Part 2 · Easier Web Development with Express.js · Chapter 8</p>
+    <h2>Setting Up an App with Express.js</h2>
+    <p class="chapter-tagline">Install Express and create your first framework-based server</p>
+  </div>
+
+  <div class="chapter-story">
+    <p>A web framework is a module that offers structure to your application. Express.js is the most popular framework for Node.js. It provides methods and modules for handling requests, serving static and dynamic content, connecting databases, and keeping track of user activity.</p>
+    <p>Express.js came out in 2010 and has a large community. Other frameworks include Koa.js, Hapi.js, Sails.js, and Total.js, but Express.js is the most widely used and supported.</p>
+    <p>To use Express.js, initialize a project with <code>npm init</code> and install it with <code>npm install express --save</code>. Then require it and create an app: <code>const express = require("express"), app = express();</code>. You can define routes with <code>app.get()</code>, <code>app.post()</code>, etc.</p>
+    <p>Express.js acts as middleware — it sits between HTTP requests and your application code. It provides request data through <code>req.params</code>, <code>req.body</code>, <code>req.url</code>, and <code>req.query</code>, making it easier to extract information from incoming requests.</p>
+  </div>
+
+  <pre class="code-example"><code>const port = 3000,
+  express = require("express"),
+  app = express();
+
+app.get("/", (req, res) => {
+  res.send("Hello, Universe!");
+});
+
+app.listen(port, () => {
+  console.log(`The Express.js server has started and is listening on port number: ${port}`);
+});</code></pre>
+
+  <div class="chapter-ideas">
+    <h3>Key Ideas</h3>
+    <ul>
+      <li>Express.js is a web framework that provides structure and built-in tools for Node.js applications.</li>
+      <li>It simplifies routing, request parsing, and static file serving.</li>
+      <li>Middleware functions sit between requests and responses.</li>
+      <li><code>req.params</code>, <code>req.body</code>, <code>req.query</code>, and <code>req.url</code> make request data accessible.</li>
+    </ul>
+  </div>
+
+  <div class="chapter-questions">
+    <h3>Try It Yourself</h3>
+    <ol>
+      <li>What happens if you don't use the <code>--save</code> flag when installing Express.js?</li>
+      <li>What is the difference between the <code>express</code> and <code>app</code> constants?</li>
+      <li>Why do most developers use web frameworks instead of building applications from scratch?</li>
+    </ol>
+  </div>
+
+  <div class="book-nav">
+    <button class="nav-button" data-nav="prev">← Unit 2</button>
+    <button class="nav-button" data-nav="next">Routing in Express.js →</button>
+  </div>
+</section>
+
+<!-- ============================================================
+     LESSON 9 — ROUTING IN EXPRESS.JS
+     ============================================================ -->
+<section class="book-page chapter-page" id="ch-routing-in-expressjs">
+  <div class="chapter-header">
+    <p class="chapter-part">Part 2 · Easier Web Development with Express.js · Chapter 9</p>
+    <h2>Routing in Express.js</h2>
+    <p class="chapter-tagline">Build routes with parameters, middleware, and MVC controllers</p>
+  </div>
+
+  <div class="chapter-story">
+    <p>Express.js routes are defined with the app object: <code>app.get()</code>, <code>app.post()</code>, <code>app.put()</code>, <code>app.delete()</code>. The route path and callback function are the two key arguments.</p>
+    <p>Route parameters are placeholders in the path, marked with a colon. For example, <code>app.get("/items/:vegetable", ...)</code> captures whatever value appears after <code>/items/</code> and makes it available as <code>req.params.vegetable</code>.</p>
+    <p>Middleware functions are functions that run before your route handler. <code>app.use()</code> registers middleware that runs on every request or on requests matching a specific path. Middleware receives <code>req</code>, <code>res</code>, and <code>next</code>; calling <code>next()</code> continues to the next function.</p>
+    <p>The MVC (model-view-controller) pattern organizes your application into three parts: models (data), views (display), and controllers (logic). In Express.js, route callbacks act as controllers. You can move them into separate controller modules for cleaner code.</p>
+    <p><code>express-generator</code> is a package that scaffolds an Express.js application with a predefined structure. Install it globally with <code>npm install express-generator -g</code> and run <code>express project_name</code> to create a new project.</p>
+  </div>
+
+  <pre class="code-example"><code>// Route with parameters
+app.get("/items/:vegetable", (req, res) => {
+  let veg = req.params.vegetable;
+  res.send(`This is the page for ${veg}`);
+});
+
+// Middleware for logging
+app.use((req, res, next) => {
+  console.log(`request made to: ${req.url}`);
+  next();
+});</code></pre>
+
+  <div class="chapter-ideas">
+    <h3>Key Ideas</h3>
+    <ul>
+      <li>Express.js routes use HTTP methods and paths with optional parameters.</li>
+      <li>Middleware functions run before route handlers and can modify requests.</li>
+      <li>The MVC pattern separates data (models), display (views), and logic (controllers).</li>
+      <li>Route callbacks can be moved to separate controller files for organization.</li>
+      <li><code>express-generator</code> provides scaffolding for new projects.</li>
+    </ul>
+  </div>
+
+  <div class="chapter-questions">
+    <h3>Try It Yourself</h3>
+    <ol>
+      <li>What does the Express.js <code>use</code> method do?</li>
+      <li>How do you extract a route parameter from the request?</li>
+      <li>Create a POST route for <code>/sign_up</code> that uses a controller function called <code>userSignUpProcessor</code>.</li>
+    </ol>
+  </div>
+
+  <div class="book-nav">
+    <button class="nav-button" data-nav="prev">← Setting up an app with Express.js</button>
+    <button class="nav-button" data-nav="next">Connecting views with templates →</button>
+  </div>
+</section>
+
+<!-- ============================================================
+     LESSON 10 — CONNECTING VIEWS WITH TEMPLATES
+     ============================================================ -->
+<section class="book-page chapter-page" id="ch-connecting-views-with-templates">
+  <div class="chapter-header">
+    <p class="chapter-part">Part 2 · Easier Web Development with Express.js · Chapter 10</p>
+    <h2>Connecting Views with Templates</h2>
+    <p class="chapter-tagline">Use EJS to render dynamic views with data from controllers</p>
+  </div>
+
+  <div class="chapter-story">
+    <p>Templating engines let you embed dynamic data in your views. Express.js works with many engines; this book uses EJS (Embedded JavaScript). EJS files have the <code>.ejs</code> extension and allow JavaScript logic inside HTML.</p>
+    <p>To use EJS, install it with <code>npm install ejs --save</code> and set <code>app.set("view engine", "ejs")</code>. Then use <code>res.render("viewName", { data })</code> to render a view with data.</p>
+    <p>The <code>set</code> method is used to configure application settings. For example, <code>app.set("port", process.env.PORT || 3000)</code> sets the port to an environment variable or a default.</p>
+    <p>Controllers pass data to views by including an object in the <code>res.render</code> call. In the view, you use <code>&lt;%= variable %&gt;</code> to output a value.</p>
+    <p>Layouts and partials reduce repetition. Install <code>express-ejs-layouts</code> and add <code>app.use(layouts)</code>. A layout file wraps every view, with <code>&lt;%- body %&gt;</code> marking where the view content goes. Partials are reusable snippets included with <code>&lt;%- include partials/navigation %&gt;</code>.</p>
+  </div>
+
+  <pre class="code-example"><code>// homeController.js
+exports.respondWithName = (req, res) => {
+  let paramsName = req.params.myName;
+  res.render("index", { name: paramsName });
+};
+
+// index.ejs
+<h1>Hello, <%= name %></h1>
+
+// layout.ejs
+<body>
+  <div id="nav">NAVIGATION</div>
+  <%- body %>
+  <div id="footer">FOOTER</div>
+</body></code></pre>
+
+  <div class="chapter-ideas">
+    <h3>Key Ideas</h3>
+    <ul>
+      <li>EJS allows embedding JavaScript in HTML views.</li>
+      <li><code>res.render()</code> passes data from controllers to views.</li>
+      <li>Layouts provide a consistent shell for all pages.</li>
+      <li>Partials are reusable view snippets included in multiple pages.</li>
+      <li><code>app.set()</code> configures application settings like the view engine and port.</li>
+    </ul>
+  </div>
+
+  <div class="chapter-questions">
+    <h3>Try It Yourself</h3>
+    <ol>
+      <li>What is a templating engine?</li>
+      <li>In what format do you send data from a controller to a view?</li>
+      <li>What keyword do you use to share partials across multiple views?</li>
+    </ol>
+  </div>
+
+  <div class="book-nav">
+    <button class="nav-button" data-nav="prev">← Routing in Express.js</button>
+    <button class="nav-button" data-nav="next">Configurations and error handling →</button>
+  </div>
+</section>
+
+<!-- ============================================================
+     LESSON 11 — CONFIGURATIONS AND ERROR HANDLING
+     ============================================================ -->
+<section class="book-page chapter-page" id="ch-configurations-and-error-handling">
+  <div class="chapter-header">
+    <p class="chapter-part">Part 2 · Easier Web Development with Express.js · Chapter 11</p>
+    <h2>Configurations and Error Handling</h2>
+    <p class="chapter-tagline">Set up start scripts and handle errors gracefully</p>
+  </div>
+
+  <div class="chapter-story">
+    <p>You can add an <code>npm start</code> script to <code>package.json</code> so you don't need to remember the name of your main file. Add <code>"start": "node main.js"</code> to the <code>scripts</code> object. Then run <code>npm start</code> to launch the app.</p>
+    <p>Express.js handles errors through middleware. A normal middleware function has three arguments (<code>req, res, next</code>); an error-handling middleware function has four (<code>error, req, res, next</code>). You can create an error controller with functions that log errors and send custom error pages.</p>
+    <p>A 404 handler catches requests for routes that don't exist. A 500 handler catches internal server errors. These middleware functions must be placed after all other routes.</p>
+    <p>Express.js can serve static files automatically. Add <code>app.use(express.static("public"))</code> to serve everything in the <code>public</code> folder. This makes it easy to serve images, CSS, JavaScript, and custom error pages.</p>
+  </div>
+
+  <pre class="code-example"><code>// package.json
+"scripts": {
+  "test": "echo \"Error: no test specified\" && exit 1",
+  "start": "node main.js"
+}
+
+// errorController.js
+const httpStatus = require("http-status-codes");
+
+exports.respondNoResourceFound = (req, res) => {
+  let errorCode = httpStatus.NOT_FOUND;
+  res.status(errorCode);
+  res.sendFile(`./public/${errorCode}.html`, { root: "/" });
+};
+
+exports.respondInternalError = (error, req, res, next) => {
+  let errorCode = httpStatus.INTERNAL_SERVER_ERROR;
+  res.status(errorCode);
+  res.send(`${errorCode} | Sorry, our application is experiencing a problem!`);
+};
+
+// main.js
+app.use(express.static("public"));
+app.use(errorController.respondNoResourceFound);
+app.use(errorController.respondInternalError);</code></pre>
+
+  <div class="chapter-ideas">
+    <h3>Key Ideas</h3>
+    <ul>
+      <li>The <code>npm start</code> script lets you run the app without specifying the main file.</li>
+      <li>Error-handling middleware has four arguments and must be placed after all routes.</li>
+      <li>404 handlers catch missing routes; 500 handlers catch internal errors.</li>
+      <li><code>express.static()</code> serves static files from a folder.</li>
+    </ul>
+  </div>
+
+  <div class="chapter-questions">
+    <h3>Try It Yourself</h3>
+    <ol>
+      <li>What is the purpose of the <code>scripts</code> object in <code>package.json</code>?</li>
+      <li>Why does middleware that handles missing routes go after your normal application routes?</li>
+      <li>What important static files live in your <code>public</code> folder?</li>
+    </ol>
+  </div>
+
+  <div class="book-nav">
+    <button class="nav-button" data-nav="prev">← Connecting views with templates</button>
+    <button class="nav-button" data-nav="next">Capstone: Enhancing the Confetti Cuisine site →</button>
+  </div>
+</section>
+
+<!-- ============================================================
+     LESSON 12 — CAPSTONE: ENHANCING CONFETTI CUISINE WITH EXPRESS.JS
+     ============================================================ -->
+<section class="book-page chapter-page" id="ch-capstone-enhancing-the-confetti-cuisine-site-with-expressjs">
+  <div class="chapter-header">
+    <p class="chapter-part">Part 2 · Easier Web Development with Express.js · Chapter 12</p>
+    <h2>Capstone: Enhancing the Confetti Cuisine Site with Express.js</h2>
+    <p class="chapter-tagline">Rebuild the static site as a dynamic Express.js application</p>
+  </div>
+
+  <div class="chapter-story">
+    <p>In this capstone, you convert the Confetti Cuisine site to use Express.js. You initialize the project, install Express, EJS, express-ejs-layouts, and http-status-codes, and set up a start script.</p>
+    <p>The project structure includes a <code>views</code> folder for EJS files, a <code>controllers</code> folder for logic, and a <code>public</code> folder for assets. You create a layout, several views (index, courses, contact, thanks, error), and controllers that render those views.</p>
+    <p>Routes are added for the home page, courses, contact, and form submissions. The contact form posts to the <code>/contact</code> route, which renders the thank-you page. You also pass dynamic course data from the controller to the courses view.</p>
+    <p>Error handling is set up with a controller that renders an error page for 404s and responds with a friendly message for 500s. Static files are served from the <code>public</code> folder.</p>
+  </div>
+
+  <pre class="code-example"><code>// homeController.js
+var courses = [
+  { title: "Event Driven Cakes", cost: 50 },
+  { title: "Asynchronous Artichoke", cost: 25 },
+  { title: "Object Oriented Orange Juice", cost: 10 }
+];
+
+exports.showCourses = (req, res) => {
+  res.render("courses", { offeredCourses: courses });
+};
+
+// courses.ejs
+<h1>Our Courses</h1>
+<% offeredCourses.forEach(course => { %>
+  <h5><%= course.title %></h5>
+  <span>$ <%= course.cost %></span>
+<% }); %></code></pre>
+
+  <div class="chapter-ideas">
+    <h3>Key Ideas</h3>
+    <ul>
+      <li>Express.js simplifies routing, view rendering, and static file serving.</li>
+      <li>Controllers pass dynamic data to EJS views.</li>
+      <li>Error-handling middleware provides custom 404 and 500 pages.</li>
+      <li>The MVC structure keeps code organized and maintainable.</li>
+    </ul>
+  </div>
+
+  <div class="chapter-questions">
+    <h3>Try It Yourself</h3>
+    <ol>
+      <li>What Express.js packages are installed for the Confetti Cuisine application?</li>
+      <li>How does the courses page receive its data?</li>
+      <li>What happens when a user visits a URL that doesn't match any route?</li>
+    </ol>
+  </div>
+
+  <div class="book-nav">
+    <button class="nav-button" data-nav="prev">← Configurations and error handling</button>
+    <button class="nav-button" data-nav="next">Unit 3 →</button>
+  </div>
+</section>
+
+<!-- ============================================================
+     UNIT 3 DIVIDER
+     ============================================================ -->
+<section class="book-page cover-page part-page part-four" id="unit-three">
+  <p class="part-number">Unit 3</p>
+  <h1>Connecting to a Database</h1>
+  <p class="part-desc">Store and retrieve data with MongoDB and Mongoose.</p>
+  <button class="nav-button" data-nav="next">Begin Lesson 13 →</button>
+</section>
+
+<!-- ============================================================
+     LESSON 13 — SETTING UP A MONGODB DATABASE
+     ============================================================ -->
+<section class="book-page chapter-page" id="ch-setting-up-a-mongodb-database">
+  <div class="chapter-header">
+    <p class="chapter-part">Part 3 · Connecting to a Database · Chapter 13</p>
+    <h2>Setting Up a MongoDB Database</h2>
+    <p class="chapter-tagline">Install MongoDB and store your first documents</p>
+  </div>
+
+  <div class="chapter-story">
+    <p>A database is an organization of your data designed for easy access and efficient changes. MongoDB is an open-source database that stores data in documents with a JSON-like structure. It is a NoSQL database, meaning it doesn't use tables like relational databases.</p>
+    <p>MongoDB stores documents in BSON (a binary form of JSON). Documents can have different fields, and collections group related documents. This flexibility makes MongoDB a natural fit for JavaScript applications.</p>
+    <p>To install MongoDB, you can use Homebrew on macOS (<code>brew install mongodb</code>) or download the installer for Windows. Start the MongoDB server with <code>mongod</code>, then open the shell with <code>mongo</code>.</p>
+    <p>In the shell, you can create databases (<code>use recipe_db</code>), insert documents (<code>db.contacts.insert({...})</code>), and query them (<code>db.contacts.find()</code>). Each document gets a unique <code>_id</code> generated by MongoDB.</p>
+    <p>To connect MongoDB to a Node.js application, install the <code>mongodb</code> package and use <code>MongoClient.connect()</code> to establish a connection. You can then query collections and insert documents from your application code.</p>
+  </div>
+
+  <pre class="code-example"><code>const MongoDB = require("mongodb").MongoClient,
+  dbURL = "mongodb://localhost:27017",
+  dbName = "recipe_db";
+
+MongoDB.connect(dbURL, (error, client) => {
+  if (error) throw error;
+  let db = client.db(dbName);
+  db.collection("contacts")
+    .find()
+    .toArray((error, data) => {
+      if (error) throw error;
+      console.log(data);
+    });
+});</code></pre>
+
+  <div class="chapter-ideas">
+    <h3>Key Ideas</h3>
+    <ul>
+      <li>MongoDB is a NoSQL document database that stores data in JSON-like documents.</li>
+      <li>Collections group related documents; each document has a unique <code>_id</code>.</li>
+      <li>The MongoDB shell lets you create databases, insert data, and run queries.</li>
+      <li>Node.js applications connect to MongoDB using the <code>mongodb</code> package.</li>
+    </ul>
+  </div>
+
+  <div class="chapter-questions">
+    <h3>Try It Yourself</h3>
+    <ol>
+      <li>How does MongoDB differ from a relational database?</li>
+      <li>What commands create a database and insert a document in the MongoDB shell?</li>
+      <li>True or false: If you try to connect to a database that doesn't exist, MongoDB throws an error.</li>
+    </ol>
+  </div>
+
+  <div class="book-nav">
+    <button class="nav-button" data-nav="prev">← Unit 3</button>
+    <button class="nav-button" data-nav="next">Building models with Mongoose →</button>
+  </div>
+</section>
+
+<!-- ============================================================
+     LESSON 14 — BUILDING MODELS WITH MONGOOSE
+     ============================================================ -->
+<section class="book-page chapter-page" id="ch-building-models-with-mongoose">
+  <div class="chapter-header">
+    <p class="chapter-part">Part 3 · Connecting to a Database · Chapter 14</p>
+    <h2>Building Models with Mongoose</h2>
+    <p class="chapter-tagline">Define schemas and models for structured data</p>
+  </div>
+
+  <div class="chapter-story">
+    <p>Mongoose is an object-document mapper (ODM) that provides a layer between your application and MongoDB. It lets you define schemas that specify the structure and types of your data, ensuring consistency.</p>
+    <p>To use Mongoose, install it with <code>npm i mongoose -S</code>, require it, and connect to your MongoDB database with <code>mongoose.connect()</code>. The connection is stored in <code>mongoose.connection</code>.</p>
+    <p>A schema is a blueprint for documents in a collection. You define field names and types (String, Number, Date, etc.). For example: <code>const subscriberSchema = mongoose.Schema({ name: String, email: String, zipCode: Number })</code>.</p>
+    <p>Once a schema is defined, you create a model with <code>mongoose.model("Subscriber", subscriberSchema)</code>. The model is used to create, read, update, and delete documents. You can instantiate new documents with <code>new Subscriber({...})</code> and save them with <code>.save()</code>, or use <code>Subscriber.create({...})</code> to do both at once.</p>
+    <p>Models can be organized into separate files. Move the schema and model definition to <code>models/subscriber.js</code> and export the model with <code>module.exports</code>. Then require it in other files as needed.</p>
+  </div>
+
+  <pre class="code-example"><code>const mongoose = require("mongoose");
+mongoose.connect("mongodb://localhost:27017/recipe_db", { useNewUrlParser: true });
+const db = mongoose.connection;
+db.once("open", () => {
+  console.log("Successfully connected to MongoDB using Mongoose!");
+});
+
+const subscriberSchema = mongoose.Schema({
+  name: String,
+  email: String,
+  zipCode: Number
+});
+
+module.exports = mongoose.model("Subscriber", subscriberSchema);</code></pre>
+
+  <div class="chapter-ideas">
+    <h3>Key Ideas</h3>
+    <ul>
+      <li>Mongoose is an ODM that provides structure and validation for MongoDB data.</li>
+      <li>A schema defines the fields and types of a document.</li>
+      <li>A model is created from a schema and used to interact with the database.</li>
+      <li>Models should be organized into separate modules for maintainability.</li>
+    </ul>
+  </div>
+
+  <div class="chapter-questions">
+    <h3>Try It Yourself</h3>
+    <ol>
+      <li>What is an ODM?</li>
+      <li>True or false: Using <code>new Subscriber({ name: "Jon", email: "jon@jonwexler.com" })</code> saves a new record to your database.</li>
+      <li>What two components are required for each field specified in a Mongoose schema?</li>
+    </ol>
+  </div>
+
+  <div class="book-nav">
+    <button class="nav-button" data-nav="prev">← Setting up a MongoDB database</button>
+    <button class="nav-button" data-nav="next">Connecting controllers and models →</button>
+  </div>
+</section>
+
+<!-- ============================================================
+     LESSON 15 — CONNECTING CONTROLLERS AND MODELS
+     ============================================================ -->
+<section class="book-page chapter-page" id="ch-connecting-controllers-and-models">
+  <div class="chapter-header">
+    <p class="chapter-part">Part 3 · Connecting to a Database · Chapter 15</p>
+    <h2>Connecting Controllers and Models</h2>
+    <p class="chapter-tagline">Save data from forms and query it with promises</p>
+  </div>
+
+  <div class="chapter-story">
+    <p>Controllers act as the glue between models and views. A subscribers controller handles requests related to subscriber data: listing subscribers, showing a sign-up form, and saving new subscribers.</p>
+    <p>The <code>getAllSubscribers</code> action queries the database with <code>Subscriber.find({})</code> and passes the results to the view. The view loops through the data with EJS and displays it.</p>
+    <p>The <code>getSubscriptionPage</code> action renders the contact form. The <code>saveSubscriber</code> action creates a new Subscriber instance from <code>req.body</code> and saves it. On success, it renders a thank-you view.</p>
+    <p>Mongoose works with JavaScript promises. You can chain <code>.then()</code> and <code>.catch()</code> to handle asynchronous database operations. Add <code>mongoose.Promise = global.Promise</code> to use native promises. The <code>.exec()</code> method returns a promise from a query.</p>
+    <p>Using promises makes your controller code cleaner and easier to read, especially when you have multiple asynchronous operations.</p>
+  </div>
+
+  <pre class="code-example"><code>exports.getAllSubscribers = (req, res) => {
+  Subscriber.find({})
+    .exec()
+    .then(subscribers => {
+      res.render("subscribers", { subscribers: subscribers });
+    })
+    .catch(error => {
+      console.log(error.message);
+      return [];
+    })
+    .then(() => {
+      console.log("promise complete");
+    });
+};
+
+exports.saveSubscriber = (req, res) => {
+  let newSubscriber = new Subscriber({
+    name: req.body.name,
+    email: req.body.email,
+    zipCode: req.body.zipCode
+  });
+  newSubscriber.save()
+    .then(() => { res.render("thanks"); })
+    .catch(error => { res.send(error); });
+};</code></pre>
+
+  <div class="chapter-ideas">
+    <h3>Key Ideas</h3>
+    <ul>
+      <li>Controllers handle requests and interact with models.</li>
+      <li>Mongoose queries can return promises, enabling <code>.then()</code> and <code>.catch()</code> chaining.</li>
+      <li>Form data is accessible through <code>req.body</code> when body-parser middleware is used.</li>
+      <li>The <code>.exec()</code> method returns a true promise from a Mongoose query.</li>
+    </ul>
+  </div>
+
+  <div class="chapter-questions">
+    <h3>Try It Yourself</h3>
+    <ol>
+      <li>From what module do you pass data to the view?</li>
+      <li>What middleware is needed in addition to Express.js to process data from a form?</li>
+      <li>True or false: Using <code>exec</code> on a Mongoose query is the same as running a query that returns a new promise.</li>
+    </ol>
+  </div>
+
+  <div class="book-nav">
+    <button class="nav-button" data-nav="prev">← Building models with Mongoose</button>
+    <button class="nav-button" data-nav="next">Capstone: Saving user subscriptions →</button>
+  </div>
+</section>
+
+<!-- ============================================================
+     LESSON 16 — CAPSTONE: SAVING USER SUBSCRIPTIONS
+     ============================================================ -->
+<section class="book-page chapter-page" id="ch-capstone-saving-user-subscriptions">
+  <div class="chapter-header">
+    <p class="chapter-part">Part 3 · Connecting to a Database · Chapter 16</p>
+    <h2>Capstone: Saving User Subscriptions</h2>
+    <p class="chapter-tagline">Add a subscription form and save subscribers to MongoDB</p>
+  </div>
+
+  <div class="chapter-story">
+    <p>In this capstone, you add a database to the Confetti Cuisine application. Install Mongoose and connect to a <code>confetti_cuisine</code> database.</p>
+    <p>Create a Subscriber model with a schema that requires a name, email, and ZIP code. The model is exported and used by the subscribers controller.</p>
+    <p>The controller has three actions: <code>getAllSubscribers</code> (lists all subscribers), <code>getSubscriptionPage</code> (renders the contact form), and <code>saveSubscriber</code> (creates a new subscriber from form data). The form posts to <code>/subscribe</code>, and on success, the user sees a thank-you page.</p>
+    <p>Routes are added for listing subscribers, viewing the subscription page, and processing the form submission. The application now stores data persistently and displays it in the browser.</p>
+  </div>
+
+  <pre class="code-example"><code>// main.js
+const subscribersController = require("./controllers/subscribersController");
+
+app.get("/subscribers", subscribersController.getAllSubscribers);
+app.get("/contact", subscribersController.getSubscriptionPage);
+app.post("/subscribe", subscribersController.saveSubscriber);
+
+// subscribers.ejs
+<% subscribers.forEach(s => { %>
+  <p><%= s.name %></p>
+  <p><%= s.email %></p>
+<% }); %></code></pre>
+
+  <div class="chapter-ideas">
+    <h3>Key Ideas</h3>
+    <ul>
+      <li>A complete data flow: form → controller → model → database → view.</li>
+      <li>Mongoose models structure and validate data before saving.</li>
+      <li>EJS views can loop through arrays of data from the database.</li>
+      <li>Promises keep asynchronous controller actions readable.</li>
+    </ul>
+  </div>
+
+  <div class="chapter-questions">
+    <h3>Try It Yourself</h3>
+    <ol>
+      <li>What three fields does the Subscriber schema require?</li>
+      <li>What route handles form submissions?</li>
+      <li>How does the subscribers view receive its data?</li>
+    </ol>
+  </div>
+
+  <div class="book-nav">
+    <button class="nav-button" data-nav="prev">← Connecting controllers and models</button>
+    <button class="nav-button" data-nav="next">Unit 4 →</button>
+  </div>
+</section>
+
+<!-- ============================================================
+     UNIT 4 DIVIDER
+     ============================================================ -->
+<section class="book-page cover-page part-page part-five" id="unit-four">
+  <p class="part-number">Unit 4</p>
+  <h1>Building a User Model</h1>
+  <p class="part-desc">Create robust CRUD operations for users, with validations and associations.</p>
+  <button class="nav-button" data-nav="next">Begin Lesson 17 →</button>
+</section>
+
+<!-- ============================================================
+     LESSON 17 — IMPROVING YOUR DATA MODELS
+     ============================================================ -->
+<section class="book-page chapter-page" id="ch-improving-your-data-models">
+  <div class="chapter-header">
+    <p class="chapter-part">Part 4 · Building a User Model · Chapter 17</p>
+    <h2>Improving Your Data Models</h2>
+    <p class="chapter-tagline">Add validations, instance methods, and model associations</p>
+  </div>
+
+  <div class="chapter-story">
+    <p>Mongoose schemas can include validations to ensure data quality. The <code>required</code> option forces a field to be present. <code>min</code> and <code>max</code> enforce numeric ranges. <code>lowercase: true</code> normalizes email addresses. <code>unique: true</code> prevents duplicate values.</p>
+    <p>Schema methods let you define custom behavior. Instance methods operate on a single document; static methods operate on the model itself. For example, a <code>getInfo</code> instance method can return a subscriber's details in one line.</p>
+    <p>Model associations allow documents to reference each other. In MongoDB, you store an array of ObjectIds with a <code>ref</code> to the associated model. For example, a Subscriber can have many Courses: <code>courses: [{ type: Schema.Types.ObjectId, ref: "Course" }]</code>.</p>
+    <p>The <code>populate</code> method replaces ObjectIds with the actual documents from the associated collection. This gives you access to the full data of related models.</p>
+  </div>
+
+  <pre class="code-example"><code>const subscriberSchema = new mongoose.Schema({
+  name: { type: String, required: true },
+  email: { type: String, required: true, lowercase: true, unique: true },
+  zipCode: { type: Number, min: [10000, "Zip code too short"], max: 99999 },
+  courses: [{ type: mongoose.Schema.Types.ObjectId, ref: "Course" }]
+});
+
+subscriberSchema.methods.getInfo = function() {
+  return `Name: ${this.name} Email: ${this.email} Zip Code: ${this.zipCode}`;
+};
+
+subscriberSchema.methods.findLocalSubscribers = function() {
+  return this.model("Subscriber")
+    .find({ zipCode: this.zipCode })
+    .exec();
+};</code></pre>
+
+  <div class="chapter-ideas">
+    <h3>Key Ideas</h3>
+    <ul>
+      <li>Validators enforce data consistency at the schema level.</li>
+      <li>Instance methods operate on individual documents; static methods on the model.</li>
+      <li>Model associations use ObjectIds and <code>ref</code> to link documents.</li>
+      <li><code>populate</code> replaces ObjectIds with full documents.</li>
+    </ul>
+  </div>
+
+  <div class="chapter-questions">
+    <h3>Try It Yourself</h3>
+    <ol>
+      <li>When you use promises with Mongoose queries, what should a query always return?</li>
+      <li>Why do you need to require the database connection and Mongoose models into REPL to test your code?</li>
+      <li>How do you distinguish between a model associated to one instance versus many instances?</li>
+    </ol>
+  </div>
+
+  <div class="book-nav">
+    <button class="nav-button" data-nav="prev">← Unit 4</button>
+    <button class="nav-button" data-nav="next">Building the user model →</button>
+  </div>
+</section>
+
+<!-- ============================================================
+     LESSON 18 — BUILDING THE USER MODEL
+     ============================================================ -->
+<section class="book-page chapter-page" id="ch-building-the-user-model">
+  <div class="chapter-header">
+    <p class="chapter-part">Part 4 · Building a User Model · Chapter 18</p>
+    <h2>Building the User Model</h2>
+    <p class="chapter-tagline">Create a User schema with virtual attributes and CRUD foundations</p>
+  </div>
+
+  <div class="chapter-story">
+    <p>The User model is the most important model in most applications. It stores information about each person who signs up. The User schema includes first and last name (as an object), email, ZIP code, password, courses (an array of references), and a <code>subscribedAccount</code> reference to a Subscriber.</p>
+    <p>Virtual attributes are computed properties that are not saved to the database. For example, a <code>fullName</code> virtual returns the first and last name combined. Define it with <code>userSchema.virtual("fullName").get(...)</code>.</p>
+    <p>CRUD stands for Create, Read, Update, and Delete. The index page (Read all) displays all users in a table. The controller's <code>index</code> action queries the database and passes the results to the view.</p>
+    <p>Clean up your controllers by exporting all actions in a single <code>module.exports</code> object literal instead of repeating <code>exports.actionName</code> for each one.</p>
+    <p>The index view loops through an array of users and displays each one's full name, email, and ZIP code in a table.</p>
+  </div>
+
+  <pre class="code-example"><code>const userSchema = new Schema({
+  name: {
+    first: { type: String, trim: true },
+    last: { type: String, trim: true }
+  },
+  email: { type: String, required: true, lowercase: true, unique: true },
+  zipCode: { type: Number, min: [10000, "Zip code too short"], max: 99999 },
+  password: { type: String, required: true },
+  courses: [{ type: Schema.Types.ObjectId, ref: "Course" }],
+  subscribedAccount: { type: Schema.Types.ObjectId, ref: "Subscriber" }
+}, { timestamps: true });
+
+userSchema.virtual("fullName").get(function() {
+  return `${this.name.first} ${this.name.last}`;
+});
+
+module.exports = mongoose.model("User", userSchema);</code></pre>
+
+  <div class="chapter-ideas">
+    <h3>Key Ideas</h3>
+    <ul>
+      <li>The User model stores account information and references to other models.</li>
+      <li>Virtual attributes compute values without storing them in the database.</li>
+      <li>The index action retrieves all documents and passes them to a view.</li>
+      <li>Controller actions can be exported together for cleaner code.</li>
+    </ul>
+  </div>
+
+  <div class="chapter-questions">
+    <h3>Try It Yourself</h3>
+    <ol>
+      <li>How are virtual attributes different from normal model attributes?</li>
+      <li>What CRUD functions don't necessarily need a view?</li>
+      <li>What is the purpose of the index view?</li>
+    </ol>
+  </div>
+
+  <div class="book-nav">
+    <button class="nav-button" data-nav="prev">← Improving your data models</button>
+    <button class="nav-button" data-nav="next">Creating and reading your models →</button>
+  </div>
+</section>
+
+<!-- ============================================================
+     LESSON 19 — CREATING AND READING YOUR MODELS
+     ============================================================ -->
+<section class="book-page chapter-page" id="ch-creating-and-reading-your-models">
+  <div class="chapter-header">
+    <p class="chapter-part">Part 4 · Building a User Model · Chapter 19</p>
+    <h2>Creating and Reading Your Models</h2>
+    <p class="chapter-tagline">Build forms for creating users and pages for reading their data</p>
+  </div>
+
+  <div class="chapter-story">
+    <p>The <code>new.ejs</code> view contains a form for creating users. Each input's <code>name</code> attribute matches a field in the User schema (e.g., <code>name="first"</code>, <code>name="email"</code>). HTML validations like <code>required</code> and <code>type="email"</code> provide client-side checks.</p>
+    <p>The <code>create</code> action builds a <code>userParams</code> object from <code>req.body</code> and calls <code>User.create()</code>. On success, it redirects to the users index page; on failure, it passes the error to the next middleware.</p>
+    <p>A <code>pre("save")</code> hook runs before a user is saved. You can use it to automatically link a new user to an existing subscriber with the same email address. The hook searches the Subscriber collection and assigns the result to <code>user.subscribedAccount</code>.</p>
+    <p>The <code>show.ejs</code> view displays a single user's data. The <code>show</code> action uses <code>User.findById(req.params.id)</code> to find the user and passes it to the view. The index page links each user's name to their show page.</p>
+  </div>
+
+  <pre class="code-example"><code>// usersController.js
+create: (req, res, next) => {
+  let userParams = {
+    name: { first: req.body.first, last: req.body.last },
+    email: req.body.email,
+    password: req.body.password,
+    zipCode: req.body.zipCode
+  };
+  User.create(userParams)
+    .then(user => {
+      res.locals.redirect = "/users";
+      res.locals.user = user;
+      next();
+    })
+    .catch(error => {
+      console.log(`Error saving user: ${error.message}`);
+      next(error);
+    });
+},
+
+show: (req, res, next) => {
+  let userId = req.params.id;
+  User.findById(userId)
+    .then(user => {
+      res.locals.user = user;
+      next();
+    })
+    .catch(error => {
+      console.log(`Error fetching user by ID: ${error.message}`);
+      next(error);
+    });
+}</code></pre>
+
+  <div class="chapter-ideas">
+    <h3>Key Ideas</h3>
+    <ul>
+      <li>Forms for creating users use input names that match schema fields.</li>
+      <li>The <code>create</code> action saves form data and redirects on success.</li>
+      <li><code>pre("save")</code> hooks automate data linkage between models.</li>
+      <li>The <code>show</code> action reads a single document by its ID.</li>
+    </ul>
+  </div>
+
+  <div class="chapter-questions">
+    <h3>Try It Yourself</h3>
+    <ol>
+      <li>Which form input attribute must have a value for controller actions to identify form data?</li>
+      <li>Why does the Mongoose <code>pre("save")</code> hook take <code>next</code> as a parameter?</li>
+      <li>True or false: The URL parameter representing the user's ID must be called <code>:id</code>.</li>
+    </ol>
+  </div>
+
+  <div class="book-nav">
+    <button class="nav-button" data-nav="prev">← Building the user model</button>
+    <button class="nav-button" data-nav="next">Updating and deleting your models →</button>
+  </div>
+</section>
+
+<!-- ============================================================
+     LESSON 20 — UPDATING AND DELETING YOUR MODELS
+     ============================================================ -->
+<section class="book-page chapter-page" id="ch-updating-and-deleting-your-models">
+  <div class="chapter-header">
+    <p class="chapter-part">Part 4 · Building a User Model · Chapter 20</p>
+    <h2>Updating and Deleting Your Models</h2>
+    <p class="chapter-tagline">Complete CRUD with edit forms and delete actions</p>
+  </div>
+
+  <div class="chapter-story">
+    <p>The <code>edit.ejs</code> form displays a user's current data in the input fields. The form submits a PUT request to <code>/users/:id/update</code>, but HTML forms only support GET and POST. The <code>method-override</code> package solves this by reading a <code>?_method=PUT</code> query parameter and treating the request as a PUT.</p>
+    <p>The <code>edit</code> action finds the user by ID and renders the edit form. The <code>update</code> action uses <code>findByIdAndUpdate</code> to apply the changes and redirects to the user's show page.</p>
+    <p>Deletion is handled with a link that sends a DELETE request (via <code>?_method=DELETE</code>). The <code>delete</code> action uses <code>findByIdAndRemove</code> to remove the document and redirects to the index page.</p>
+    <p>Install <code>method-override</code> with <code>npm i method-override -S</code> and add it as middleware: <code>router.use(methodOverride("_method", { methods: ["POST", "GET"] }))</code>.</p>
+  </div>
+
+  <pre class="code-example"><code>// usersController.js
+edit: (req, res, next) => {
+  let userId = req.params.id;
+  User.findById(userId)
+    .then(user => {
+      res.render("users/edit", { user: user });
+    })
+    .catch(error => { next(error); });
+},
+
+update: (req, res, next) => {
+  let userId = req.params.id,
+    userParams = {
+      name: { first: req.body.first, last: req.body.last },
+      email: req.body.email,
+      password: req.body.password,
+      zipCode: req.body.zipCode
+    };
+  User.findByIdAndUpdate(userId, { $set: userParams })
+    .then(user => {
+      res.locals.redirect = `/users/${userId}`;
+      res.locals.user = user;
+      next();
+    })
+    .catch(error => { next(error); });
+},
+
+delete: (req, res, next) => {
+  let userId = req.params.id;
+  User.findByIdAndRemove(userId)
+    .then(() => {
+      res.locals.redirect = "/users";
+      next();
+    })
+    .catch(error => { next(); });
+}</code></pre>
+
+  <div class="chapter-ideas">
+    <h3>Key Ideas</h3>
+    <ul>
+      <li>The <code>method-override</code> package lets HTML forms send PUT and DELETE requests.</li>
+      <li><code>findByIdAndUpdate</code> updates a document by ID in one step.</li>
+      <li><code>findByIdAndRemove</code> deletes a document by ID.</li>
+      <li>Edit forms pre-populate inputs with existing data.</li>
+    </ul>
+  </div>
+
+  <div class="chapter-questions">
+    <h3>Try It Yourself</h3>
+    <ol>
+      <li>Why do you use the PUT method for the edit form and POST for the new form?</li>
+      <li>True or false: <code>findByIdAndUpdate</code> is a Mongoose method.</li>
+      <li>Why is <code>?_method=DELETE</code> needed at the end of your link's path?</li>
+    </ol>
+  </div>
+
+  <div class="book-nav">
+    <button class="nav-button" data-nav="prev">← Creating and reading your models</button>
+    <button class="nav-button" data-nav="next">Capstone: Adding CRUD models →</button>
+  </div>
+</section>
+
+<!-- ============================================================
+     LESSON 21 — CAPSTONE: ADDING CRUD MODELS TO CONFETTI CUISINE
+     ============================================================ -->
+<section class="book-page chapter-page" id="ch-capstone-adding-crud-models-to-confetti-cuisine">
+  <div class="chapter-header">
+    <p class="chapter-part">Part 4 · Building a User Model · Chapter 21</p>
+    <h2>Capstone: Adding CRUD Models to Confetti Cuisine</h2>
+    <p class="chapter-tagline">Complete CRUD functionality for users, courses, and subscribers</p>
+  </div>
+
+  <div class="chapter-story">
+    <p>This capstone adds full CRUD functionality to the Confetti Cuisine application for three models: User, Course, and Subscriber. Each model gets index, new, show, and edit views, and a set of controller actions that implement create, read, update, and delete.</p>
+    <p>The Subscriber model is enhanced with validations and a <code>getInfo</code> instance method. The Course model includes title, description, maxStudents, and cost, with validations to prevent negative numbers. The User model includes name, email, ZIP code, password, and associations to courses and subscribers.</p>
+    <p>Controllers are cleaned up with a shared <code>getSubscriberParams</code> (and similar functions for other models) to reduce repetition. The <code>redirectView</code> action handles redirects after successful operations.</p>
+    <p>Routes are organized into separate files for each model, and the application now supports full data management through the browser.</p>
+  </div>
+
+  <pre class="code-example"><code>// subscribersController.js
+const Subscriber = require("../models/subscriber"),
+  getSubscriberParams = (body) => {
+    return {
+      name: body.name,
+      email: body.email,
+      zipCode: parseInt(body.zipCode)
+    };
+  };
+
+module.exports = {
+  index: (req, res, next) => {
+    Subscriber.find()
+      .then(subscribers => {
+        res.locals.subscribers = subscribers;
+        next();
+      })
+      .catch(error => next(error));
+  },
+  indexView: (req, res) => {
+    res.render("subscribers/index");
+  },
+  create: (req, res, next) => {
+    let subscriberParams = getSubscriberParams(req.body);
+    Subscriber.create(subscriberParams)
+      .then(subscriber => {
+        res.locals.redirect = "/subscribers";
+        res.locals.subscriber = subscriber;
+        next();
+      })
+      .catch(error => next(error));
+  }
+};</code></pre>
+
+  <div class="chapter-ideas">
+    <h3>Key Ideas</h3>
+    <ul>
+      <li>CRUD operations are implemented for all three models.</li>
+      <li>Validations ensure data integrity at the schema level.</li>
+      <li>Shared parameter functions reduce controller code duplication.</li>
+      <li>Separate route files organize the growing application.</li>
+    </ul>
+  </div>
+
+  <div class="chapter-questions">
+    <h3>Try It Yourself</h3>
+    <ol>
+      <li>What three models have CRUD functionality in this capstone?</li>
+      <li>What validations are added to the Course model?</li>
+      <li>How does the User model associate with the Subscriber model?</li>
+    </ol>
+  </div>
+
+  <div class="book-nav">
+    <button class="nav-button" data-nav="prev">← Updating and deleting your models</button>
+    <button class="nav-button" data-nav="next">Unit 5 →</button>
+  </div>
+</section>
+
+<!-- ============================================================
+     UNIT 5 DIVIDER
+     ============================================================ -->
+<section class="book-page cover-page part-page part-six" id="unit-five">
+  <p class="part-number">Unit 5</p>
+  <h1>Authenticating User Accounts</h1>
+  <p class="part-desc">Secure your application with sessions, password hashing, and Passport.js.</p>
+  <button class="nav-button" data-nav="next">Begin Lesson 22 →</button>
+</section>
+
+<!-- ============================================================
+     LESSON 22 — ADDING SESSIONS AND FLASH MESSAGES
+     ============================================================ -->
+<section class="book-page chapter-page" id="ch-adding-sessions-and-flash-messages">
+  <div class="chapter-header">
+    <p class="chapter-part">Part 5 · Authenticating User Accounts · Chapter 22</p>
+    <h2>Adding Sessions and Flash Messages</h2>
+    <p class="chapter-tagline">Pass short messages between pages with connect-flash</p>
+  </div>
+
+  <div class="chapter-story">
+    <p>Flash messages are temporary data used to display information to users, such as success or error notices. They are stored in a session, which contains data about the most recent interaction between a user and the application.</p>
+    <p>Sessions and cookies are not included in Express.js by default. Install <code>express-session</code>, <code>cookie-parser</code>, and <code>connect-flash</code>. Configure them as middleware: <code>cookie-parser</code> with a secret key, <code>express-session</code> with cookie settings, and <code>connect-flash</code> to create the messages.</p>
+    <p>Add a middleware function that copies flash messages from the request to <code>res.locals.flashMessages</code> so they are available in views. In controller actions, set messages with <code>req.flash("success", "message")</code> or <code>req.flash("error", "message")</code>.</p>
+    <p>In the layout view, check for <code>flashMessages</code> and display them in styled divs. You can use custom CSS classes to differentiate success and error messages.</p>
+  </div>
+
+  <pre class="code-example"><code>const expressSession = require("express-session"),
+  cookieParser = require("cookie-parser"),
+  connectFlash = require("connect-flash");
+
+router.use(cookieParser("secret_passcode"));
+router.use(expressSession({
+  secret: "secret_passcode",
+  cookie: { maxAge: 4000000 },
+  resave: false,
+  saveUninitialized: false
+}));
+router.use(connectFlash());
+
+router.use((req, res, next) => {
+  res.locals.flashMessages = req.flash();
+  next();
+});
+
+// In a controller
+req.flash("success", "Account created successfully!");
+res.locals.redirect = "/users";</code></pre>
+
+  <div class="chapter-ideas">
+    <h3>Key Ideas</h3>
+    <ul>
+      <li>Sessions and cookies preserve data between requests.</li>
+      <li>Flash messages are temporary notifications shown after a redirect.</li>
+      <li><code>connect-flash</code> simplifies creating and displaying flash messages.</li>
+      <li>Flash messages are available in views through <code>res.locals</code>.</li>
+    </ul>
+  </div>
+
+  <div class="chapter-questions">
+    <h3>Try It Yourself</h3>
+    <ol>
+      <li>How does a cookie's secret key change the way that data is sent and stored on a browser?</li>
+      <li>What two arguments are needed for the <code>req.flash</code> method?</li>
+      <li>Where do flash messages need to be added to make them available in views?</li>
+    </ol>
+  </div>
+
+  <div class="book-nav">
+    <button class="nav-button" data-nav="prev">← Unit 5</button>
+    <button class="nav-button" data-nav="next">Building a user login and hashing passwords →</button>
+  </div>
+</section>
+
+<!-- ============================================================
+     LESSON 23 — BUILDING A USER LOGIN AND HASHING PASSWORDS
+     ============================================================ -->
+<section class="book-page chapter-page" id="ch-building-a-user-login-and-hashing-passwords">
+  <div class="chapter-header">
+    <p class="chapter-part">Part 5 · Authenticating User Accounts · Chapter 23</p>
+    <h2>Building a User Login and Hashing Passwords</h2>
+    <p class="chapter-tagline">Secure passwords with bcrypt and validate user input</p>
+  </div>
+
+  <div class="chapter-story">
+    <p>The login form has inputs for email and password. It posts to <code>/users/login</code>. The <code>authenticate</code> action queries the User model by email and compares the provided password with the stored password.</p>
+    <p>Storing plain-text passwords is insecure. Hashing converts a password into an irreversible string. <code>bcrypt</code> is a hashing library that adds a salt (random characters) to make the hash more secure. Install it with <code>npm i bcrypt@3.0.0 -S</code>.</p>
+    <p>Add a <code>pre("save")</code> hook to the User schema that hashes the password before saving. The hook uses <code>bcrypt.hash(user.password, 10)</code> and assigns the result back to <code>user.password</code>. Also add a <code>passwordComparison</code> method that uses <code>bcrypt.compare</code> to check a login attempt.</p>
+    <p>The <code>express-validator</code> package provides additional middleware for sanitizing and validating input. Install it and add a <code>validate</code> action before the <code>create</code> action to check email format, ZIP code length, and password presence.</p>
+  </div>
+
+  <pre class="code-example"><code>// user.js
+const bcrypt = require("bcrypt");
+
+userSchema.pre("save", function(next) {
+  let user = this;
+  bcrypt.hash(user.password, 10).then(hash => {
+    user.password = hash;
+    next();
+  }).catch(error => {
+    console.log(`Error in hashing password: ${error.message}`);
+    next(error);
+  });
+});
+
+userSchema.methods.passwordComparison = function(inputPassword) {
+  let user = this;
+  return bcrypt.compare(inputPassword, user.password);
+};
+
+// usersController.js — validate action
+validate: (req, res, next) => {
+  req.sanitizeBody("email").normalizeEmail({ all_lowercase: true }).trim();
+  req.check("email", "Email is invalid").isEmail();
+  req.check("zipCode", "Zip code is invalid").notEmpty().isInt().isLength({ min: 5, max: 5 });
+  req.check("password", "Password cannot be empty").notEmpty();
+  req.getValidationResult().then((error) => {
+    if (!error.isEmpty()) {
+      let messages = error.array().map(e => e.msg);
+      req.skip = true;
+      req.flash("error", messages.join(" and "));
+      res.locals.redirect = "/users/new";
+      next();
+    } else {
+      next();
+    }
+  });
+}</code></pre>
+
+  <div class="chapter-ideas">
+    <h3>Key Ideas</h3>
+    <ul>
+      <li>Passwords must be hashed with bcrypt before storage.</li>
+      <li>A <code>pre("save")</code> hook automates password hashing on user creation.</li>
+      <li><code>bcrypt.compare</code> checks a plain-text input against a hashed password.</li>
+      <li><code>express-validator</code> provides middleware for sanitizing and validating input.</li>
+    </ul>
+  </div>
+
+  <div class="chapter-questions">
+    <h3>Try It Yourself</h3>
+    <ol>
+      <li>Why does the placement of the <code>/users/login</code> route matter in <code>main.js</code>?</li>
+      <li>True or false: bcrypt's compare method compares the plain-text password in your database with the plain-text value from the user's input.</li>
+      <li>What's the difference between a sanitizer and a validator?</li>
+    </ol>
+  </div>
+
+  <div class="book-nav">
+    <button class="nav-button" data-nav="prev">← Adding sessions and flash messages</button>
+    <button class="nav-button" data-nav="next">Adding user authentication →</button>
+  </div>
+</section>
+
+<!-- ============================================================
+     LESSON 24 — ADDING USER AUTHENTICATION
+     ============================================================ -->
+<section class="book-page chapter-page" id="ch-adding-user-authentication">
+  <div class="chapter-header">
+    <p class="chapter-part">Part 5 · Authenticating User Accounts · Chapter 24</p>
+    <h2>Adding User Authentication</h2>
+    <p class="chapter-tagline">Use Passport.js to simplify login and session management</p>
+  </div>
+
+  <div class="chapter-story">
+    <p>Passport.js is middleware for hashing passwords and authenticating users. It uses strategies — the local strategy uses email and password. Install <code>passport</code> and <code>passport-local-mongoose</code>.</p>
+    <p>Initialize Passport with <code>passport.initialize()</code> and <code>passport.session()</code>. The session middleware must be set up before Passport uses it.</p>
+    <p>Configure the User model to use <code>passport-local-mongoose</code> as a plugin. This plugin adds <code>hash</code> and <code>salt</code> fields to the schema and provides methods for registration and authentication. Set <code>usernameField: "email"</code>.</p>
+    <p>The <code>create</code> action is replaced with <code>User.register(newUser, req.body.password, callback)</code>. The <code>authenticate</code> action becomes <code>passport.authenticate("local", { ... })</code>.</p>
+    <p>Add middleware that sets <code>res.locals.loggedIn</code> and <code>res.locals.currentUser</code> on every request using <code>req.isAuthenticated()</code> and <code>req.user</code>. Then the navigation can show whether a user is logged in.</p>
+  </div>
+
+  <pre class="code-example"><code>// main.js
+const passport = require("passport");
+router.use(passport.initialize());
+router.use(passport.session());
+passport.use(User.createStrategy());
+passport.serializeUser(User.serializeUser());
+passport.deserializeUser(User.deserializeUser());
+
+router.use((req, res, next) => {
+  res.locals.loggedIn = req.isAuthenticated();
+  res.locals.currentUser = req.user;
+  next();
+});
+
+// user.js
+const passportLocalMongoose = require("passport-local-mongoose");
+userSchema.plugin(passportLocalMongoose, { usernameField: "email" });
+
+// usersController.js
+authenticate: passport.authenticate("local", {
+  failureRedirect: "/users/login",
+  failureFlash: "Failed to login.",
+  successRedirect: "/",
+  successFlash: "Logged in!"
+})</code></pre>
+
+  <div class="chapter-ideas">
+    <h3>Key Ideas</h3>
+    <ul>
+      <li>Passport.js handles hashing and authentication with minimal code.</li>
+      <li><code>passport-local-mongoose</code> adds hash and salt fields automatically.</li>
+      <li>User registration uses <code>User.register</code> instead of manual hashing.</li>
+      <li>Session state is tracked with <code>req.isAuthenticated()</code> and <code>req.user</code>.</li>
+    </ul>
+  </div>
+
+  <div class="chapter-questions">
+    <h3>Try It Yourself</h3>
+    <ol>
+      <li>True or false: A salt is needed to hash passwords.</li>
+      <li>Why does Passport.js need you to save the hash and the salt in your database?</li>
+      <li>How do you have access to Passport.js methods on the request throughout the application?</li>
+    </ol>
+  </div>
+
+  <div class="book-nav">
+    <button class="nav-button" data-nav="prev">← Building a user login and hashing passwords</button>
+    <button class="nav-button" data-nav="next">Capstone: Adding user authentication →</button>
+  </div>
+</section>
+
+<!-- ============================================================
+     LESSON 25 — CAPSTONE: ADDING USER AUTHENTICATION TO CONFETTI CUISINE
+     ============================================================ -->
+<section class="book-page chapter-page" id="ch-capstone-adding-user-authentication-to-confetti-cuisine">
+  <div class="chapter-header">
+    <p class="chapter-part">Part 5 · Authenticating User Accounts · Chapter 25</p>
+    <h2>Capstone: Adding User Authentication to Confetti Cuisine</h2>
+    <p class="chapter-tagline">Secure the application with Passport.js and flash messages</p>
+  </div>
+
+  <div class="chapter-story">
+    <p>In this capstone, you add authentication to the Confetti Cuisine application. Install <code>express-session</code>, <code>cookie-parser</code>, <code>connect-flash</code>, <code>express-validator</code>, <code>passport</code>, and <code>passport-local-mongoose</code>.</p>
+    <p>Create a login form in <code>views/users/login.ejs</code> that posts to <code>/users/login</code>. Add routes for login, logout, and authentication.</p>
+    <p>Configure Passport with session middleware and the local strategy. Apply <code>passport-local-mongoose</code> to the User schema, remove the plain-text <code>password</code> field, and use <code>User.register</code> in the <code>create</code> action.</p>
+    <p>Add flash messages to the layout and to controller actions. Set <code>res.locals.loggedIn</code> and <code>res.locals.currentUser</code> in middleware so the navigation bar can show the logged-in user's name and a logout link.</p>
+    <p>The logout action calls <code>req.logout()</code> and redirects to the home page with a confirmation message. The application now supports secure user accounts and login sessions.</p>
+  </div>
+
+  <pre class="code-example"><code>// login.ejs
+<form action="/users/login" method="POST">
+  <label for="inputEmail">Email address</label>
+  <input type="email" name="email" id="inputEmail" required>
+  <label for="inputPassword">Password</label>
+  <input type="password" name="password" id="inputPassword" required>
+  <button type="submit">Login</button>
+</form>
+
+// usersController.js
+login: (req, res) => {
+  res.render("users/login");
+},
+logout: (req, res, next) => {
+  req.logout();
+  req.flash("success", "You have been logged out!");
+  res.locals.redirect = "/";
+  next();
+}</code></pre>
+
+  <div class="chapter-ideas">
+    <h3>Key Ideas</h3>
+    <ul>
+      <li>Passport.js and passport-local-mongoose secure user accounts.</li>
+      <li>Flash messages provide feedback on login and logout.</li>
+      <li>Sessions persist login state across requests.</li>
+      <li>Navigation can conditionally show login/logout links.</li>
+    </ul>
+  </div>
+
+  <div class="chapter-questions">
+    <h3>Try It Yourself</h3>
+    <ol>
+      <li>What packages are installed for user authentication?</li>
+      <li>What happens when a user successfully logs in?</li>
+      <li>How does the navigation bar know whether to show a login or logout link?</li>
+    </ol>
+  </div>
+
+  <div class="book-nav">
+    <button class="nav-button" data-nav="prev">← Adding user authentication</button>
+    <button class="nav-button" data-nav="next">Unit 6 →</button>
+  </div>
+</section>
+
+<!-- ============================================================
+     UNIT 6 DIVIDER
+     ============================================================ -->
+<section class="book-page cover-page part-page part-seven" id="unit-six">
+  <p class="part-number">Unit 6</p>
+  <h1>Building an API</h1>
+  <p class="part-desc">Serve JSON data, make AJAX requests, and secure your endpoints.</p>
+  <button class="nav-button" data-nav="next">Begin Lesson 26 →</button>
+</section>
+
+<!-- ============================================================
+     LESSON 26 — ADDING AN API TO YOUR APPLICATION
+     ============================================================ -->
+<section class="book-page chapter-page" id="ch-adding-an-api-to-your-application">
+  <div class="chapter-header">
+    <p class="chapter-part">Part 6 · Building an API · Chapter 26</p>
+    <h2>Adding an API to Your Application</h2>
+    <p class="chapter-tagline">Organize routes and respond with JSON</p>
+  </div>
+
+  <div class="chapter-story">
+    <p>An API (application programming interface) allows external sources to access your application's data. You've already built one — your Express.js web server serving HTML. But you can also serve data in formats like JSON, which is useful for AJAX requests and external clients.</p>
+    <p>As your application grows, organize routes into separate modules in a <code>routes</code> folder. Create <code>userRoutes.js</code>, <code>courseRoutes.js</code>, <code>subscriberRoutes.js</code>, <code>errorRoutes.js</code>, <code>homeRoutes.js</code>, and an <code>index.js</code> that combines them with namespaces (<code>router.use("/users", userRoutes)</code>, etc.).</p>
+    <p>To respond with JSON, change <code>res.render()</code> to <code>res.json()</code>. You can conditionally respond with JSON based on a query parameter like <code>?format=json</code>.</p>
+    <p>AJAX lets you make asynchronous requests from the client without reloading the page. Use <code>fetch</code> or jQuery's <code>$.get</code> to call an API endpoint and update the DOM with the returned JSON data.</p>
+    <p>A modal window can be populated with course data via AJAX. The modal is triggered by a button and displays a list of courses fetched from <code>/courses?format=json</code>.</p>
+  </div>
+
+  <pre class="code-example"><code>// index.js
+const router = require("express").Router(),
+  userRoutes = require("./userRoutes"),
+  subscriberRoutes = require("./subscriberRoutes"),
+  courseRoutes = require("./courseRoutes"),
+  errorRoutes = require("./errorRoutes"),
+  homeRoutes = require("./homeRoutes");
+
+router.use("/users", userRoutes);
+router.use("/subscribers", subscriberRoutes);
+router.use("/courses", courseRoutes);
+router.use("/", homeRoutes);
+router.use("/", errorRoutes);
+module.exports = router;
+
+// coursesController.js
+indexView: (req, res) => {
+  if (req.query.format === "json") {
+    res.json(res.locals.courses);
+  } else {
+    res.render("courses/index");
+  }
+}</code></pre>
+
+  <div class="chapter-ideas">
+    <h3>Key Ideas</h3>
+    <ul>
+      <li>APIs provide data in formats like JSON for external clients and AJAX requests.</li>
+      <li>Namespacing organizes routes into logical groups.</li>
+      <li><code>res.json()</code> sends JSON data.</li>
+      <li>AJAX allows asynchronous data loading without page reloads.</li>
+    </ul>
+  </div>
+
+  <div class="chapter-questions">
+    <h3>Try It Yourself</h3>
+    <ol>
+      <li>What method do you use on the response to send data as JSON back to the client?</li>
+      <li>What happens if there are no courses in the database when you make an AJAX request?</li>
+      <li>Why do you add <code>app.use("/", router)</code> in <code>main.js</code>?</li>
+    </ol>
+  </div>
+
+  <div class="book-nav">
+    <button class="nav-button" data-nav="prev">← Unit 6</button>
+    <button class="nav-button" data-nav="next">Accessing your API from your application →</button>
+  </div>
+</section>
+
+<!-- ============================================================
+     LESSON 27 — ACCESSING YOUR API FROM YOUR APPLICATION
+     ============================================================ -->
+<section class="book-page chapter-page" id="ch-accessing-your-api-from-your-application">
+  <div class="chapter-header">
+    <p class="chapter-part">Part 6 · Building an API · Chapter 27</p>
+    <h2>Accessing Your API from Your Application</h2>
+    <p class="chapter-tagline">Use AJAX to join courses from a modal</p>
+  </div>
+
+  <div class="chapter-story">
+    <p>Create a dedicated API namespace with <code>router.use("/api", apiRoutes)</code>. This separates API routes from web routes, making the application more maintainable.</p>
+    <p>The <code>apiRoutes.js</code> module contains routes that respond with JSON. For example, <code>router.get("/courses", coursesController.index, coursesController.respondJSON)</code>. The <code>respondJSON</code> action sends <code>res.locals</code> as JSON with a status code.</p>
+    <p>Add a join button to the modal for each course with a <code>data-id</code> attribute holding the course's ID. Add a click listener (via a helper function <code>addJoinButtonListener</code>) after the AJAX call completes. When clicked, the button fires another AJAX GET to <code>/api/courses/:id/join</code>. If the response returns <code>success: true</code>, the button changes to "Joined" and receives a new class.</p>
+    <p>The <code>join</code> action in the courses controller gets the current logged-in user and the course ID from the URL, then uses <code>findByIdAndUpdate</code> with the MongoDB <code>$addToSet</code> operator to add the course to the user's <code>courses</code> array without duplicates. A <code>filterUserCourses</code> middleware marks each course with a <code>joined</code> boolean so the client can render the correct button state.</p>
+  </div>
+
+  <pre class="code-example"><code>// apiRoutes.js
+const router = require("express").Router(),
+  coursesController = require("../controllers/coursesController");
+router.get("/courses", coursesController.index, coursesController.filterUserCourses, coursesController.respondJSON);
+router.get("/courses/:id/join", coursesController.join, coursesController.respondJSON);
+router.use(coursesController.errorJSON);
+module.exports = router;
+
+// coursesController.js — join action
+join: (req, res, next) => {
+  let courseId = req.params.id,
+    currentUser = req.user;
+  if (currentUser) {
+    User.findByIdAndUpdate(currentUser, {
+      $addToSet: { courses: courseId }
+    })
+      .then(() => { res.locals.success = true; next(); })
+      .catch(error => next(error));
+  } else {
+    next(new Error("User must log in."));
+  }
+}</code></pre>
+
+  <div class="chapter-ideas">
+    <h3>Key Ideas</h3>
+    <ul>
+      <li>An API namespace (<code>/api</code>) separates data routes from web routes.</li>
+      <li>AJAX calls to API endpoints let users update data without reloading.</li>
+      <li>The <code>$addToSet</code> operator adds unique items to an array.</li>
+      <li>Middleware like <code>filterUserCourses</code> can enrich API responses per user.</li>
+      <li>Ternary operators drive dynamic button state on the client.</li>
+    </ul>
+  </div>
+
+  <div class="chapter-questions">
+    <h3>Try It Yourself</h3>
+    <ol>
+      <li>Why do you create a new folder for API controllers?</li>
+      <li>Why do you need to call the <code>addJoinButtonListener</code> function after the modal contents are created?</li>
+      <li>Why do you need to use the <code>findByIdAndUpdate</code> method?</li>
+    </ol>
+  </div>
+
+  <div class="book-nav">
+    <button class="nav-button" data-nav="prev">← Adding an API to your application</button>
+    <button class="nav-button" data-nav="next">Adding API security →</button>
+  </div>
+</section>
+
+<!-- ============================================================
+     LESSON 28 — ADDING API SECURITY
+     ============================================================ -->
+<section class="book-page chapter-page" id="ch-adding-api-security">
+  <div class="chapter-header">
+    <p class="chapter-part">Part 6 · Building an API · Chapter 28</p>
+    <h2>Adding API Security</h2>
+    <p class="chapter-tagline">Protect your API with tokens and JSON Web Tokens</p>
+  </div>
+
+  <div class="chapter-story">
+    <p>APIs can be accessed by any client that can make HTTP requests, so you need to secure them. The simplest approach is a single shared token: middleware checks the <code>apiToken</code> query parameter against a value stored in <code>process.env.TOKEN</code> or a default. This is a thin layer of security — the more users who know the token, the more likely it leaks.</p>
+    <p>A better approach is a per-user token. Add an <code>apiToken</code> field to the User schema and generate a random token with the <code>rand-token</code> package in a <code>pre("save")</code> hook: <code>user.apiToken = randToken.generate(16)</code>. The middleware then looks up a user whose <code>apiToken</code> matches the query parameter.</p>
+    <p>JSON Web Tokens (JWT) offer the strongest option for API authentication. A JWT has three parts: header, payload (usually the user ID), and signature. The server signs the token on login, and the client sends it back in the request headers.</p>
+    <p>Use the <code>jsonwebtoken</code> package. The <code>apiAuthenticate</code> action uses <code>passport.authenticate</code> with a callback that signs a token containing the user's ID and an expiration date. The <code>verifyJWT</code> middleware then reads the token from the request headers, verifies it with the secret passphrase, decodes the payload, and confirms the user still exists.</p>
+  </div>
+
+  <pre class="code-example"><code>// user.js — per-user token hook
+const randToken = require("rand-token");
+userSchema.pre("save", function(next) {
+  let user = this;
+  if (!user.apiToken) user.apiToken = randToken.generate(16);
+  next();
+});
+
+// usersController.js — issue a JWT
+apiAuthenticate: (req, res, next) => {
+  passport.authenticate("local", (errors, user) => {
+    if (user) {
+      let signedToken = jsonWebToken.sign(
+        { data: user._id, exp: new Date().setDate(new Date().getDate() + 1) },
+        "secret_encoding_passphrase"
+      );
+      res.json({ success: true, token: signedToken });
+    } else {
+      res.json({ success: false, message: "Could not authenticate user." });
+    }
+  })(req, res, next);
+}
+
+// usersController.js — verify a JWT
+verifyJWT: (req, res, next) => {
+  let token = req.headers.token;
+  if (token) {
+    jsonWebToken.verify(token, "secret_encoding_passphrase", (errors, payload) => {
+      if (payload) {
+        User.findById(payload.data).then(user => {
+          if (user) next();
+          else res.status(httpStatus.FORBIDDEN).json({ error: true, message: "No User account found." });
+        });
+      } else {
+        res.status(httpStatus.UNAUTHORIZED).json({ error: true, message: "Cannot verify API token." });
+      }
+    });
+  } else {
+    res.status(httpStatus.UNAUTHORIZED).json({ error: true, message: "Provide Token" });
+  }
+}</code></pre>
+
+  <div class="chapter-ideas">
+    <h3>Key Ideas</h3>
+    <ul>
+      <li>API security protects data from unauthorized clients.</li>
+      <li>A single shared token is simple but limited.</li>
+      <li>Per-user tokens generated with <code>rand-token</code> offer individualized security.</li>
+      <li>JWTs encode a user's ID and are verified via a secret signature on each request.</li>
+      <li>Store secrets in environment variables, not in code.</li>
+    </ul>
+  </div>
+
+  <div class="chapter-questions">
+    <h3>Try It Yourself</h3>
+    <ol>
+      <li>Why might you store a secret token in <code>process.env.TOKEN</code>?</li>
+      <li>What does <code>randToken.generate(16)</code> do?</li>
+      <li>Why do you pass the JWT in the header of the request?</li>
+    </ol>
+  </div>
+
+  <div class="book-nav">
+    <button class="nav-button" data-nav="prev">← Accessing your API from your application</button>
+    <button class="nav-button" data-nav="next">Capstone: Implementing an API →</button>
+  </div>
+</section>
+
+<!-- ============================================================
+     LESSON 29 — CAPSTONE: IMPLEMENTING AN API
+     ============================================================ -->
+<section class="book-page chapter-page" id="ch-capstone-implementing-an-api">
+  <div class="chapter-header">
+    <p class="chapter-part">Part 6 · Building an API · Chapter 29</p>
+    <h2>Capstone: Implementing an API</h2>
+    <p class="chapter-tagline">Restructure routes, add a modal, and let users enroll in courses</p>
+  </div>
+
+  <div class="chapter-story">
+    <p>In this capstone, you rework Confetti Cuisine's routes into individual modules (<code>userRoutes.js</code>, <code>courseRoutes.js</code>, <code>subscriberRoutes.js</code>, <code>homeRoutes.js</code>, <code>errorRoutes.js</code>, and <code>apiRoutes.js</code>) that are combined in <code>index.js</code> with namespaces.</p>
+    <p>You add a Bootstrap modal to the layout via a partial (<code>_coursesModal.ejs</code>) that lists courses. The modal is opened by a "Latest Courses" button in the navigation bar. You create a client-side JavaScript file <code>confettiCuisine.js</code> that makes an AJAX request to <code>/api/courses</code>, loops through the results, and populates the modal body with each course's title, cost, description, and a Join button.</p>
+    <p>The <code>join</code> action is added to the courses controller to enroll the logged-in user in the selected course using <code>findByIdAndUpdate</code> with <code>$addToSet</code>. If no user is logged in, the action returns an error message in JSON.</p>
+    <p>The <code>filterUserCourses</code> middleware compares each course ID with the user's <code>courses</code> array and marks each course with a <code>joined</code> property. The client uses this property to render the button as "Joined" (green) or "Join" (blue).</p>
+  </div>
+
+  <pre class="code-example"><code>// confettiCuisine.js
+$(document).ready(() => {
+  $("#modal-button").click(() => {
+    $(".modal-body").html("");
+    $.get("/api/courses", (results = {}) => {
+      let data = results.data;
+      if (!data || !data.courses) return;
+      data.courses.forEach((course) => {
+        $(".modal-body").append(`
+          <div>
+            <span class="course-cost">$${course.cost}</span>
+            <span class="course-title">${course.title}</span>
+            <button class="${course.joined ? "joined-button" : "join-button"} btn btn-info btn-sm" data-id="${course._id}">
+              ${course.joined ? "Joined" : "Join"}
+            </button>
+            <div class="course-description">${course.description}</div>
+          </div>
+        `);
+      });
+    }).then(() => { addJoinButtonListener(); });
+  });
+});
+
+let addJoinButtonListener = () => {
+  $(".join-button").click((event) => {
+    let $button = $(event.target),
+      courseId = $button.data("id");
+    $.get(`/api/courses/${courseId}/join`, (results = {}) => {
+      let data = results.data;
+      if (data && data.success) {
+        $button.text("Joined").addClass("joined-button").removeClass("join-button");
+      } else {
+        $button.text("Try again");
+      }
+    });
+  });
+};</code></pre>
+
+  <div class="chapter-ideas">
+    <h3>Key Ideas</h3>
+    <ul>
+      <li>RESTful routes organized by model scale cleanly with namespaces.</li>
+      <li>A modal populated by AJAX lets users view and act on course data from any page.</li>
+      <li>API endpoints return JSON that the client can use to update the UI dynamically.</li>
+      <li>The <code>$addToSet</code> operator ensures a user isn't enrolled twice in the same course.</li>
+    </ul>
+  </div>
+
+  <div class="chapter-questions">
+    <h3>Try It Yourself</h3>
+    <ol>
+      <li>What does the <code>_coursesModal.ejs</code> partial display?</li>
+      <li>How does the client know whether a course is already joined?</li>
+      <li>What happens if a user tries to join a course without being logged in?</li>
+    </ol>
+  </div>
+
+  <div class="book-nav">
+    <button class="nav-button" data-nav="prev">← Adding API security</button>
+    <button class="nav-button" data-nav="next">Unit 7 →</button>
+  </div>
+</section>
+
+<!-- ============================================================
+     UNIT 7 DIVIDER
+     ============================================================ -->
+<section class="book-page cover-page part-page part-eight" id="unit-seven">
+  <p class="part-number">Unit 7</p>
+  <h1>Adding Chat Functionality</h1>
+  <p class="part-desc">Build a real-time chat with Socket.io and save messages to your database.</p>
+  <button class="nav-button" data-nav="next">Begin Lesson 30 →</button>
+</section>
+
+<!-- ============================================================
+     LESSON 30 — WORKING WITH SOCKET.IO
+     ============================================================ -->
+<section class="book-page chapter-page" id="ch-working-with-socketio">
+  <div class="chapter-header">
+    <p class="chapter-part">Part 7 · Adding Chat Functionality · Chapter 30</p>
+    <h2>Working with Socket.io</h2>
+    <p class="chapter-tagline">Build a real-time chat with web sockets</p>
+  </div>
+
+  <div class="chapter-story">
+    <p>Traditional HTTP is a request-response cycle: the client asks, the server answers, and the connection closes. For live data like chat or basketball scores, this is inefficient. Polling repeatedly asks the server for new data; long polling holds the connection open longer to reduce requests.</p>
+    <p>Web sockets (introduced in 2011) allow a true open channel between client and server. Data can flow in both directions as long as the connection stays open. Socket.io is a library that uses web sockets when available and falls back to polling.</p>
+    <p>Install socket.io with <code>npm i socket.io -S</code>. Pass your Express.js server to socket.io: <code>io = require("socket.io")(server)</code>. The <code>io</code> object listens for connection events and lets you emit custom events to connected clients.</p>
+    <p>Build a chat view (<code>chat.ejs</code>) with a form (<code>#chatForm</code>) containing an input (<code>#chat-input</code>) and a submit button, plus a <code>#chat</code> div where messages appear. In the client-side JS, initialize <code>const socket = io();</code>, emit a <code>"message"</code> event on form submit, and listen for <code>"message"</code> events from the server.</p>
+    <p>The <code>chatController.js</code> module receives the <code>io</code> object and handles connections. On a new connection, it logs and sets up listeners for <code>"disconnect"</code> and <code>"message"</code> events. When a client emits a message, the server can use <code>io.emit</code> to broadcast back to all connected clients.</p>
+  </div>
+
+  <pre class="code-example"><code>// main.js
+const server = app.listen(app.get("port"), () => {
+  console.log(`Server running at http://localhost:${app.get("port")}`);
+}),
+io = require("socket.io")(server);
+require("./controllers/chatController")(io);
+
+// chatController.js
+module.exports = io => {
+  io.on("connection", client => {
+    console.log("new connection");
+    client.on("disconnect", () => { console.log("user disconnected"); });
+    client.on("message", () => {
+      io.emit("message", { content: "Hello" });
+    });
+  });
+};
+
+// recipeApp.js (client)
+const socket = io();
+$("#chatForm").submit(() => {
+  socket.emit("message");
+  $("#chat-input").val("");
+  return false;
+});
+socket.on("message", (message) => {
+  $("#chat").prepend($("<li>").html(message.content));
+});
+
+// layout.ejs
+// <script src="/socket.io/socket.io.js"></script></code></pre>
+
+  <div class="chapter-ideas">
+    <h3>Key Ideas</h3>
+    <ul>
+      <li>Polling and long polling are inefficient compared to web sockets for real-time data.</li>
+      <li>Socket.io provides a unified API that works with web sockets and falls back to polling.</li>
+      <li>Events are the core of socket.io — emit and listen for custom event names.</li>
+      <li>Socket.io attaches to your existing Express.js HTTP server.</li>
+    </ul>
+  </div>
+
+  <div class="chapter-questions">
+    <h3>Try It Yourself</h3>
+    <ol>
+      <li>How is long polling different from polling?</li>
+      <li>Why does the HTML element with ID <code>chat</code> not have any content?</li>
+      <li>What does <code>io.emit</code> do?</li>
+    </ol>
+  </div>
+
+  <div class="book-nav">
+    <button class="nav-button" data-nav="prev">← Unit 7</button>
+    <button class="nav-button" data-nav="next">Saving chat messages →</button>
+  </div>
+</section>
+
+<!-- ============================================================
+     LESSON 31 — SAVING CHAT MESSAGES
+     ============================================================ -->
+<section class="book-page chapter-page" id="ch-saving-chat-messages">
+  <div class="chapter-header">
+    <p class="chapter-part">Part 7 · Adding Chat Functionality · Chapter 31</p>
+    <h2>Saving Chat Messages</h2>
+    <p class="chapter-tagline">Persist messages to MongoDB and identify their authors</p>
+  </div>
+
+  <div class="chapter-story">
+    <p>So far the chat doesn't persist messages. You can improve it by sending the actual text and user information. In the client, grab <code>$("#chat-input").val()</code> and emit an object with <code>content</code>, <code>userName</code>, and <code>userId</code>.</p>
+    <p>Add hidden inputs to the chat form (<code>#chat-user-id</code> and <code>#chat-user-name</code>) that contain the logged-in user's data, so the server can identify who sent each message.</p>
+    <p>Add a Message model (<code>message.js</code>) with fields for <code>content</code>, <code>userName</code>, and <code>user</code> (a reference to User). Enable timestamps so each message has a <code>createdAt</code>. On the server, create a new Message instance from the incoming data, save it, then emit it to all clients if successful.</p>
+    <p>When a new client connects, load the ten most recent messages with <code>Message.find().sort({createdAt: -1}).limit(10)</code> and emit them with a custom <code>"load all messages"</code> event. Reverse the array so messages appear in chronological order, and prepend each to the chat box.</p>
+    <p>Styling can distinguish the current user's messages from others with a <code>current-user</code> class, and display each message's sender name.</p>
+  </div>
+
+  <pre class="code-example"><code>// message.js
+const mongoose = require("mongoose"),
+  { Schema } = mongoose;
+const messageSchema = new Schema({
+  content: { type: String, required: true },
+  userName: { type: String, required: true },
+  user: { type: Schema.Types.ObjectId, ref: "User", required: true }
+}, { timestamps: true });
+module.exports = mongoose.model("Message", messageSchema);
+
+// chatController.js
+client.on("message", (data) => {
+  let messageAttributes = {
+    content: data.content,
+    userName: data.userName,
+    user: data.userId
+  },
+  m = new Message(messageAttributes);
+  m.save()
+    .then(() => { io.emit("message", messageAttributes); })
+    .catch(error => console.log(`error: ${error.message}`));
+});
+
+Message.find({})
+  .sort({ createdAt: -1 })
+  .limit(10)
+  .then(messages => {
+    client.emit("load all messages", messages.reverse());
+  });</code></pre>
+
+  <div class="chapter-ideas">
+    <h3>Key Ideas</h3>
+    <ul>
+      <li>A Message model persists chat history to MongoDB.</li>
+      <li>Hidden form fields carry user data with each message.</li>
+      <li>Recent messages load on connection so users see chat history immediately.</li>
+      <li>CSS classes can distinguish a user's own messages.</li>
+    </ul>
+  </div>
+
+  <div class="chapter-questions">
+    <h3>Try It Yourself</h3>
+    <ol>
+      <li>Why do you need to compare the chat message's user ID with the user ID on the chat form in the client-side JavaScript?</li>
+      <li>Why do you pass the user's name to the server instead of using the user's ID to find the name in your database?</li>
+      <li>What is the purpose of the <code>"load all messages"</code> event?</li>
+    </ol>
+  </div>
+
+  <div class="book-nav">
+    <button class="nav-button" data-nav="prev">← Working with Socket.io</button>
+    <button class="nav-button" data-nav="next">Adding a chat notification indicator →</button>
+  </div>
+</section>
+
+<!-- ============================================================
+     LESSON 32 — ADDING A CHAT NOTIFICATION INDICATOR
+     ============================================================ -->
+<section class="book-page chapter-page" id="ch-adding-a-chat-notification-indicator">
+  <div class="chapter-header">
+    <p class="chapter-part">Part 7 · Adding Chat Functionality · Chapter 32</p>
+    <h2>Adding a Chat Notification Indicator</h2>
+    <p class="chapter-tagline">Flash a chat icon whenever a message is sent</p>
+  </div>
+
+  <div class="chapter-story">
+    <p>Socket.io events can be used outside the chat page too. Add a chat icon to the navigation bar (<code>&lt;a href="/chat" class="chat-icon"&gt;@&lt;/a&gt;</code>) and animate it whenever a message is sent.</p>
+    <p>When a client disconnects, use <code>client.broadcast.emit("user disconnected")</code> to notify all other sockets (broadcast skips the emitting client, which is no longer connected). The client listens for this event and displays a notice in the chat box.</p>
+    <p>In the client's <code>socket.on("message")</code> handler, use jQuery's <code>fadeOut</code> and <code>fadeIn</code> to make the chat icon blink twice. Now users on any page of the application see the chat is active.</p>
+  </div>
+
+  <pre class="code-example"><code>// chatController.js
+client.on("disconnect", () => {
+  client.broadcast.emit("user disconnected");
+  console.log("user disconnected");
+});
+
+// recipeApp.js
+socket.on("user disconnected", () => {
+  displayMessage({ userName: "Notice", content: "User left the chat" });
+});
+
+socket.on("message", (message) => {
+  displayMessage(message);
+  for (let i = 0; i < 2; i++) {
+    $(".chat-icon").fadeOut(200).fadeIn(200);
+  }
+});</code></pre>
+
+  <div class="chapter-ideas">
+    <h3>Key Ideas</h3>
+    <ul>
+      <li><code>client.broadcast.emit</code> notifies all sockets except the sender.</li>
+      <li>Socket.io events can trigger UI updates on any page.</li>
+      <li>A chat icon in the navigation bar can flash to indicate activity.</li>
+    </ul>
+  </div>
+
+  <div class="chapter-questions">
+    <h3>Try It Yourself</h3>
+    <ol>
+      <li>What's the difference between <code>client.broadcast.emit</code> and <code>client.emit</code>?</li>
+      <li>True or false: You can handle socket.io events on any page in your application.</li>
+      <li>How could you notify other users when a new user joins the chat?</li>
+    </ol>
+  </div>
+
+  <div class="book-nav">
+    <button class="nav-button" data-nav="prev">← Saving chat messages</button>
+    <button class="nav-button" data-nav="next">Capstone: Adding a chat feature →</button>
+  </div>
+</section>
+
+<!-- ============================================================
+     LESSON 33 — CAPSTONE: ADDING A CHAT FEATURE TO CONFETTI CUISINE
+     ============================================================ -->
+<section class="book-page chapter-page" id="ch-capstone-adding-a-chat-feature-to-confetti-cuisine">
+  <div class="chapter-header">
+    <p class="chapter-part">Part 7 · Adding Chat Functionality · Chapter 33</p>
+    <h2>Capstone: Adding a Chat Feature to Confetti Cuisine</h2>
+    <p class="chapter-tagline">Bring full real-time chat to the Confetti Cuisine application</p>
+  </div>
+
+  <div class="chapter-story">
+    <p>In this capstone, you bring chat functionality to Confetti Cuisine. Install socket.io with <code>npm i socket.io -S</code> and pass the Express.js server to socket.io in <code>main.js</code>.</p>
+    <p>Create <code>chatController.js</code> to handle connection, disconnect, and message events. It saves each message to the Message model and emits the message data to all clients.</p>
+    <p>Add a <code>/chat</code> route in <code>homeRoutes.js</code> and a <code>chat.ejs</code> view in the <code>views</code> folder. The view displays the chat form and a <code>#chat</code> box. In <code>confettiCuisine.js</code>, initialize <code>io()</code>, handle form submission, listen for messages, and render them with a <code>displayMessage</code> function that styles the current user's messages differently.</p>
+    <p>Finally, add a <code>&lt;a href="/chat" class="chat-icon"&gt;@&lt;/a&gt;</code> link to the layout and animate it in the client's <code>message</code> handler so users anywhere in the application see chat activity.</p>
+  </div>
+
+  <pre class="code-example"><code>// chat.ejs
+<% if (currentUser) { %>
+  <h1>Chat</h1>
+  <form id="chatForm">
+    <input id="chat-input" type="text">
+    <input id="chat-user-id" type="hidden" value="<%= currentUser._id %>">
+    <input id="chat-user-name" type="hidden" value="<%= currentUser.fullName %>">
+    <input type="submit" value="Send">
+  </form>
+  <div id="chat"></div>
+<% } %>
+
+// confettiCuisine.js
+const socket = io();
+$("#chatForm").submit(() => {
+  let text = $("#chat-input").val(),
+    userName = $("#chat-user-name").val(),
+    userId = $("#chat-user-id").val();
+  socket.emit("message", { content: text, userName: userName, userId: userId });
+  $("#chat-input").val("");
+  return false;
+});
+socket.on("message", (message) => {
+  displayMessage(message);
+  for (let i = 0; i < 2; i++) {
+    $(".chat-icon").fadeOut(200).fadeIn(200);
+  }
+});</code></pre>
+
+  <div class="chapter-ideas">
+    <h3>Key Ideas</h3>
+    <ul>
+      <li>Chat requires a socket.io connection on both server and client.</li>
+      <li>Messages are persisted to MongoDB via the Message model.</li>
+      <li>Only logged-in users can participate in the chat.</li>
+      <li>The chat icon in the navigation bar flashes on new messages.</li>
+    </ul>
+  </div>
+
+  <div class="chapter-questions">
+    <h3>Try It Yourself</h3>
+    <ol>
+      <li>What socket.io events are handled in <code>chatController.js</code>?</li>
+      <li>How does the chat prevent unauthenticated users from posting?</li>
+      <li>How does the chat history persist between page reloads?</li>
+    </ol>
+  </div>
+
+  <div class="book-nav">
+    <button class="nav-button" data-nav="prev">← Adding a chat notification indicator</button>
+    <button class="nav-button" data-nav="next">Unit 8 →</button>
+  </div>
+</section>
+
+<!-- ============================================================
+     UNIT 8 DIVIDER
+     ============================================================ -->
+<section class="book-page cover-page part-page part-nine" id="unit-eight">
+  <p class="part-number">Unit 8</p>
+  <h1>Deploying and Managing Code in Production</h1>
+  <p class="part-desc">Ship your application, monitor it, and test it.</p>
+  <button class="nav-button" data-nav="next">Begin Lesson 34 →</button>
+</section>
+
+<!-- ============================================================
+     LESSON 34 — DEPLOYING YOUR APPLICATION
+     ============================================================ -->
+<section class="book-page chapter-page" id="ch-deploying-your-application">
+  <div class="chapter-header">
+    <p class="chapter-part">Part 8 · Deploying and Managing Code in Production · Chapter 34</p>
+    <h2>Deploying Your Application</h2>
+    <p class="chapter-tagline">Launch your app on Heroku with a hosted MongoDB database</p>
+  </div>
+
+  <div class="chapter-story">
+    <p>Deployment is the process of publishing your application on the internet. A cloud service like Heroku provides the servers and infrastructure so you don't need to configure your home network.</p>
+    <p>Before deploying, make three changes: use an environment variable for the port (<code>app.set("port", process.env.PORT || 3000)</code>), use an environment variable for the database (<code>process.env.MONGODB_URI || "mongodb://localhost:27017/recipe_db"</code>), and add a <code>Procfile</code> with <code>web: node main.js</code>.</p>
+    <p>Use Git to version your code. Run <code>git init</code>, add a <code>.gitignore</code> that excludes <code>node_modules</code>, then <code>git add .</code> and <code>git commit -m "Initial application commit"</code>.</p>
+    <p>With the Heroku CLI installed and logged in, run <code>heroku create</code> to generate a URL and remote repository. Then <code>git push heroku master</code> to upload and install dependencies. Provision a MongoDB database with <code>heroku addons:create mongolab:sandbox</code>, which sets <code>MONGODB_URI</code> for you.</p>
+    <p>Visit your Heroku URL to see the application live. Monitor logs with <code>heroku logs --tail</code> and view config with <code>heroku config</code>.</p>
+  </div>
+
+  <pre class="code-example"><code>// main.js
+app.set("port", process.env.PORT || 3000);
+const server = app.listen(app.get("port"), () => {
+  console.log(`Server running at http://localhost:${app.get("port")}`);
+});
+
+mongoose.connect(
+  process.env.MONGODB_URI || "mongodb://localhost:27017/recipe_db",
+  { useNewUrlParser: true }
+);
+
+// Procfile
+// web: node main.js
+
+// Terminal
+git init
+git add .
+git commit -m "Initial application commit"
+heroku create
+git push heroku master
+heroku addons:create mongolab:sandbox</code></pre>
+
+  <div class="chapter-ideas">
+    <h3>Key Ideas</h3>
+    <ul>
+      <li>Environment variables configure port and database for production.</li>
+      <li>The <code>Procfile</code> tells Heroku how to start the app.</li>
+      <li>Git is required to deploy to Heroku.</li>
+      <li>mLab provides a MongoDB database as a Heroku add-on.</li>
+      <li><code>heroku logs --tail</code> streams production logs.</li>
+    </ul>
+  </div>
+
+  <div class="chapter-questions">
+    <h3>Try It Yourself</h3>
+    <ol>
+      <li>Why do you need the <code>Procfile</code> in your project folder?</li>
+      <li>What does the <code>heroku create</code> command do?</li>
+      <li>How do you view and set environmental variables on your Heroku application?</li>
+    </ol>
+  </div>
+
+  <div class="book-nav">
+    <button class="nav-button" data-nav="prev">← Unit 8</button>
+    <button class="nav-button" data-nav="next">Managing in production →</button>
+  </div>
+</section>
+
+<!-- ============================================================
+     LESSON 35 — MANAGING IN PRODUCTION
+     ============================================================ -->
+<section class="book-page chapter-page" id="ch-managing-in-production">
+  <div class="chapter-header">
+    <p class="chapter-part">Part 8 · Deploying and Managing Code in Production · Chapter 35</p>
+    <h2>Managing in Production</h2>
+    <p class="chapter-tagline">Load seed data, lint your code, and debug in production</p>
+  </div>
+
+  <div class="chapter-story">
+    <p>Seed data is the initial data you load into a database. Write a <code>courseSeed.js</code> file that connects to MongoDB (using <code>process.env.MONGODB_URI</code> in production) and creates records. Run it via <code>heroku run node</code> or <code>heroku run bash</code>.</p>
+    <p>Linting analyzes your code for potential errors and style inconsistencies. Install ESLint globally with <code>npm install -g eslint</code>, then run <code>eslint --init</code> to create a <code>.eslintrc.js</code> configuration file. Run <code>eslint main.js</code> to check a file.</p>
+    <p>For logging, use the <code>morgan</code> package (<code>npm i morgan -S</code>) and add <code>app.use(morgan("combined"))</code> in <code>main.js</code>. The combined format logs the method, URL, status code, and response time.</p>
+    <p>For debugging, add <code>debugger;</code> statements where you suspect problems, then run <code>node inspect main.js</code> and use <code>n</code> to step or <code>c</code> to continue. Type <code>repl</code> to inspect variables in the current scope.</p>
+  </div>
+
+  <pre class="code-example"><code>// courseSeed.js
+const mongoose = require("mongoose"),
+  Course = require("./models/course");
+mongoose.Promise = global.Promise;
+mongoose.connect(
+  process.env.MONGODB_URI || "mongodb://localhost:27017/recipe_db",
+  { useNewUrlParser: true }
+);
+Course.remove({})
+  .then(() => {
+    return Course.create({
+      title: "Beets sitting at home",
+      description: "Seasonal beets from the guy down the street.",
+      zipCode: 12323,
+      items: ["beets"]
+    });
+  })
+  .then(course => console.log(course.title))
+  .catch(error => console.log(error.message))
+  .then(() => { console.log("DONE"); mongoose.connection.close(); });
+
+// main.js
+const morgan = require("morgan");
+app.use(morgan(":method :url :status * :response-time ms"));</code></pre>
+
+  <div class="chapter-ideas">
+    <h3>Key Ideas</h3>
+    <ul>
+      <li>Seed data populates a fresh production database.</li>
+      <li>ESLint detects style and syntax problems before deployment.</li>
+      <li>Morgan provides clean request logs in production.</li>
+      <li><code>debugger;</code> lets you pause execution and inspect variables.</li>
+    </ul>
+  </div>
+
+  <div class="chapter-questions">
+    <h3>Try It Yourself</h3>
+    <ol>
+      <li>What happens when you run <code>heroku run node</code>?</li>
+      <li>What does <code>.eslintrc.js</code> do?</li>
+      <li>What happens when you add <code>debugger</code> to your application code?</li>
+    </ol>
+  </div>
+
+  <div class="book-nav">
+    <button class="nav-button" data-nav="prev">← Deploying your application</button>
+    <button class="nav-button" data-nav="next">Testing your application →</button>
+  </div>
+</section>
+
+<!-- ============================================================
+     LESSON 36 — TESTING YOUR APPLICATION
+     ============================================================ -->
+<section class="book-page chapter-page" id="ch-testing-your-application">
+  <div class="chapter-header">
+    <p class="chapter-part">Part 8 · Deploying and Managing Code in Production · Chapter 36</p>
+    <h2>Testing Your Application</h2>
+    <p class="chapter-tagline">Write assertion, model, and route tests</p>
+  </div>
+
+  <div class="chapter-story">
+    <p>Tests contain three components: test data, expectations, and a testing framework. Test-driven development (TDD) writes tests first, then implements code to pass them.</p>
+    <p>Node's built-in <code>assert</code> module provides basic checks like <code>assert.equal(actual, expected, message)</code>. For more, install <code>mocha</code> (test framework, <code>npm i mocha -g</code>) and <code>chai</code> (assertion library, <code>npm i chai -S</code>).</p>
+    <p>Mocha looks for a <code>test</code> folder. Use <code>describe</code> to group tests and <code>it</code> for individual cases. Chai's <code>expect</code> function runs assertions. For testing routes, use <code>chai-http</code> (<code>npm i chai-http -S</code>) and <code>chai.request(app).get("/users").end(...)</code>.</p>
+    <p>Separate test environment databases with <code>process.env.NODE_ENV = "test"</code> and a different database URL and port. Clean up with <code>beforeEach</code> hooks that remove documents before each test.</p>
+  </div>
+
+  <pre class="code-example"><code>// test/usersControllerSpec.js
+process.env.NODE_ENV = "test";
+const User = require("../models/user"),
+  { expect } = require("chai");
+require("../main");
+
+beforeEach(done => {
+  User.remove({}).then(() => done());
+});
+
+describe("SAVE user", () => {
+  it("it should save one user", (done) => {
+    let testUser = new User({
+      name: { first: "Jon", last: "Wexler" },
+      email: "Jon@jonwexler.com",
+      password: 12345,
+      zipCode: 10016
+    });
+    testUser.save()
+      .then(() => {
+        User.find({}).then(result => {
+          expect(result.length).to.eq(1);
+          expect(result[0]).to.have.property("_id");
+          done();
+        });
+      });
+  });
+});
+
+// main.js — separating environments
+if (process.env.NODE_ENV === "test")
+  mongoose.connect("mongodb://localhost:27017/recipe_test_db", { useNewUrlParser: true });
+else
+  mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost:27017/recipe_db", { useNewUrlParser: true });</code></pre>
+
+  <div class="chapter-ideas">
+    <h3>Key Ideas</h3>
+    <ul>
+      <li>Assertions verify that code behaves as expected.</li>
+      <li>Mocha and Chai make writing and running tests easy.</li>
+      <li>Separate test databases prevent interference with development data.</li>
+      <li><code>chai-http</code> allows testing routes end-to-end.</li>
+    </ul>
+  </div>
+
+  <div class="chapter-questions">
+    <h3>Try It Yourself</h3>
+    <ol>
+      <li>What is an assertion test?</li>
+      <li>What's the difference between <code>describe</code> and <code>it</code>?</li>
+      <li>What does <code>chai.request</code> do?</li>
+    </ol>
+  </div>
+
+  <div class="book-nav">
+    <button class="nav-button" data-nav="prev">← Managing in production</button>
+    <button class="nav-button" data-nav="next">Capstone: Deploying Confetti Cuisine →</button>
+  </div>
+</section>
+
+<!-- ============================================================
+     LESSON 37 — CAPSTONE: DEPLOYING CONFETTI CUISINE
+     ============================================================ -->
+<section class="book-page chapter-page" id="ch-capstone-deploying-confetti-cuisine">
+  <div class="chapter-header">
+    <p class="chapter-part">Part 8 · Deploying and Managing Code in Production · Chapter 37</p>
+    <h2>Capstone: Deploying Confetti Cuisine</h2>
+    <p class="chapter-tagline">Ship the Confetti Cuisine application to Heroku</p>
+  </div>
+
+  <div class="chapter-story">
+    <p>Before deploying Confetti Cuisine, lint your code with ESLint and add production logging with Morgan. Set <code>app.use(morgan("combined"))</code> for detailed request logs.</p>
+    <p>Prepare the application for production: use <code>process.env.PORT</code> and <code>process.env.MONGODB_URI</code>, and create a <code>Procfile</code> with <code>web: node main.js</code>. Initialize Git, add a <code>.gitignore</code> excluding <code>node_modules</code>, and commit.</p>
+    <p>Create a Heroku app with <code>heroku create confetti-cuisine</code>, then <code>git push heroku master</code>. Set up MongoDB with <code>heroku addons:create mongolab:sandbox</code>. Open the application with <code>heroku open</code>.</p>
+    <p>Load seed data by running <code>heroku run node</code>, pasting the courseSeed code, and watching the courses appear in the application. Then monitor your application with <code>heroku logs --tail</code>. Use <code>heroku local web</code> to reproduce issues locally and <code>debugger;</code> to inspect code as it runs.</p>
+  </div>
+
+  <pre class="code-example"><code>// Production REPL (via heroku run node)
+const mongoose = require("mongoose"),
+  Course = require("./models/course");
+mongoose.Promise = global.Promise;
+mongoose.connect(
+  process.env.MONGODB_URI || "mongodb://localhost:27017/confetti_cuisine",
+  { useNewUrlParser: true }
+);
+
+Course.remove({})
+  .then(() => Course.create({
+    title: "Chocolate World",
+    description: "Dive into the divine world of sweet and bitter chocolate making.",
+    cost: 22,
+    maxStudents: 14
+  }))
+  .then(course => console.log(course.title))
+  .catch(error => console.log(error.message))
+  .then(() => { console.log("DONE"); mongoose.connection.close(); });
+
+// Commands
+// heroku addons:create mongolab:sandbox
+// heroku run node
+// heroku logs --tail
+// heroku local web</code></pre>
+
+  <div class="chapter-ideas">
+    <h3>Key Ideas</h3>
+    <ul>
+      <li>Confetti Cuisine is now live on Heroku with MongoDB.</li>
+      <li>Seed data can be loaded through a production REPL.</li>
+      <li>Production logs and local reproduction speed up debugging.</li>
+      <li>Deployment is not the end — maintaining and improving the application continues.</li>
+    </ul>
+  </div>
+
+  <div class="chapter-questions">
+    <h3>Try It Yourself</h3>
+    <ol>
+      <li>What three changes must be made before deploying to Heroku?</li>
+      <li>How can you add seed data to a production application?</li>
+      <li>How do you view production logs from Heroku?</li>
+    </ol>
+  </div>
+
+  <div class="book-nav">
+    <button class="nav-button" data-nav="prev">← Testing your application</button>
+    <button class="nav-button" data-nav="next">Appendix A →</button>
+  </div>
+</section>
+
+<!-- ============================================================
+     APPENDIX A — JAVASCRIPT SYNTAX INTRODUCED IN ES6
+     ============================================================ -->
+<section class="book-page chapter-page" id="ch-javascript-syntax-introduced-in-es6">
+  <div class="chapter-header">
+    <p class="chapter-part">Appendices · JavaScript Syntax Introduced in ES6</p>
+    <h2>JavaScript Syntax Introduced in ES6</h2>
+    <p class="chapter-tagline">Modern JavaScript syntax used throughout this book</p>
+  </div>
+
+  <div class="chapter-story">
+    <p>ES6 (ECMAScript 2015) introduced new syntax that is now standard in Node.js applications. This appendix covers the keywords and patterns used throughout the book.</p>
+    <p>The <code>let</code> keyword defines variables scoped to the block in which they're declared. Unlike <code>var</code> (function-scoped), <code>let</code> prevents accidental variable leakage between blocks. Use <code>let</code> for variables that change.</p>
+    <p>The <code>const</code> keyword declares variables that cannot be reassigned. Use <code>const</code> for values you don't intend to change — including module imports like <code>const http = require("http")</code>.</p>
+    <p>String interpolation with backticks (<code>`</code>) and <code>${}</code> lets you embed expressions in strings. For example: <code>`It is ${x} degrees outside!`</code>. This is cleaner than string concatenation.</p>
+    <p>Arrow functions (<code>=&gt;</code>) provide a shorter syntax for functions and preserve the outer <code>this</code> context. For example: <code>let printName = name =&gt; console.log(`My name is ${name}`);</code>. Arrow functions are widely used with callbacks, promises, and Mongoose queries.</p>
+    <p>The REPL (Read-Evaluate-Print Loop) is a Node.js environment for running JavaScript interactively. Type <code>node</code> in a terminal to enter, and use the <code>repl</code> module to embed a custom REPL in your application code.</p>
+  </div>
+
+  <pre class="code-example"><code>// let — block scoped
+function sample() {
+  var num = 60;
+  if (num > 50) {
+    let num = 0;
+  }
+  console.log(num); // 60
+}
+
+// const — cannot be reassigned
+const http = require("http");
+// http = require("express"); // throws Duplicate Declaration Error
+
+// String interpolation
+var x = 45;
+console.log(`It is ${x} degrees outside!`);
+
+// Arrow functions
+let printName = name => console.log(`My name is ${name}`);
+
+// Custom REPL
+const repl = require("repl"),
+  replServer = repl.start({ prompt: "> " });
+replServer.context.name = "Jon Wexler";
+replServer.context.multiply = require("./multiply").multiply;</code></pre>
+
+  <div class="chapter-ideas">
+    <h3>Key Ideas</h3>
+    <ul>
+      <li><code>let</code> and <code>const</code> provide safer scoping than <code>var</code>.</li>
+      <li>String interpolation with backticks makes strings cleaner and easier to edit.</li>
+      <li>Arrow functions are concise and preserve the outer <code>this</code> context.</li>
+      <li>The REPL is a quick way to test code, and the <code>repl</code> module can embed REPL in your app.</li>
+    </ul>
+  </div>
+
+  <div class="chapter-questions">
+    <h3>Try It Yourself</h3>
+    <ol>
+      <li>What's the difference between <code>let</code> and <code>const</code>?</li>
+      <li>How do arrow functions treat <code>this</code> differently from traditional functions?</li>
+      <li>How can you embed a REPL in your own project?</li>
+    </ol>
+  </div>
+
+  <div class="book-nav">
+    <button class="nav-button" data-nav="prev">← Capstone: Deploying Confetti Cuisine</button>
+    <button class="nav-button" data-nav="next">Appendix B →</button>
+  </div>
+</section>
+
+<!-- ============================================================
+     APPENDIX B — LOGGING AND USING NODE.JS GLOBAL OBJECTS
+     ============================================================ -->
+<section class="book-page chapter-page" id="ch-logging-and-using-nodejs-global-objects">
+  <div class="chapter-header">
+    <p class="chapter-part">Appendices · Logging and Using Node.js Global Objects</p>
+    <h2>Logging and Using Node.js Global Objects</h2>
+    <p class="chapter-tagline">Debug effectively with console and understand the global environment</p>
+  </div>
+
+  <div class="chapter-story">
+    <p>The <code>console</code> module is a global object that provides logging functions. <code>console.log</code> prints standard output; <code>console.error</code> logs errors; <code>console.info</code> and <code>console.warn</code> are aliases. In a browser, these appear with different styles.</p>
+    <p><code>console.time</code> and <code>console.timeEnd</code> measure the time between two labeled points. Wrap an operation and see how long it took: <code>console.time("operation"); ...; console.timeEnd("operation")</code>.</p>
+    <p>Node.js provides several global objects. <code>__dirname</code> returns the absolute path to the current directory, and <code>__filename</code> returns the absolute path to the current file. <code>process</code> references the running process and gives access to environment variables (<code>process.env</code>), command-line arguments (<code>process.argv</code>), and more.</p>
+    <p>Other key global objects come from module loading. <code>module</code> references the current module, <code>exports</code> is the shared key-value object for a module's public API, and <code>require</code> imports code from other modules.</p>
+    <p>Mastering these objects makes debugging and structuring applications easier. <code>console</code> messages are your first tool when something breaks; understanding <code>process.env</code> is essential for production configuration.</p>
+  </div>
+
+  <pre class="code-example"><code>// Logging functions
+console.log("Standard output log message");
+console.error("Error output log message");
+console.info("Standard output log message");
+console.warn("Error output log message");
+
+// Timing
+console.time("function xyz");
+(function xyz() {
+  setTimeout(function() {
+    console.log("prints first");
+    console.timeEnd("function xyz");
+  }, 1000);
+})();
+
+// Global objects
+console.log(__dirname);  // /Users/Jon/Desktop
+console.log(__filename); // /Users/Jon/Desktop/filename_example.js
+console.log(process.env.NODE_ENV);
+
+// Module API
+exports.accessibleFunction = () => {
+  console.log("hello!");
+};
+const http = require("http");</code></pre>
+
+  <div class="chapter-ideas">
+    <h3>Key Ideas</h3>
+    <ul>
+      <li><code>console</code> provides logging functions for debugging.</li>
+      <li><code>console.time</code> and <code>console.timeEnd</code> measure operation durations.</li>
+      <li><code>__dirname</code> and <code>__filename</code> give absolute paths for the current file.</li>
+      <li><code>process.env</code> accesses environment variables; <code>process</code> represents the running process.</li>
+      <li><code>module</code>, <code>exports</code>, and <code>require</code> are the basis of Node.js modules.</li>
+    </ul>
+  </div>
+
+  <div class="chapter-questions">
+    <h3>Try It Yourself</h3>
+    <ol>
+      <li>What's the difference between <code>console.log</code> and <code>console.error</code>?</li>
+      <li>How do you measure how long a function takes to run?</li>
+      <li>What does <code>process.env.NODE_ENV</code> typically contain in production?</li>
+    </ol>
+  </div>
+
+  <div class="book-nav">
+    <button class="nav-button" data-nav="prev">← Appendix A</button>
+    <button class="nav-button" data-nav="next">Glossary →</button>
+  </div>
+</section>
+
+<!-- ============================================================
+     GLOSSARY
+     ============================================================ -->
+<section class="book-page chapter-page" id="glossary">
+  <div class="chapter-header">
+    <p class="chapter-part">Reference</p>
+    <h2>Glossary</h2>
+    <p class="chapter-tagline">Key terms from across the book</p>
+  </div>
+
+  <dl class="glossary-list">
+    <dt>API (application programming interface)</dt>
+    <dd>An interface through which clients can interact with your application's data — often JSON endpoints that external apps or AJAX requests can consume.</dd>
+
+    <dt>Arrow function</dt>
+    <dd>ES6 shorthand for functions that preserves the outer <code>this</code> context; used throughout the book for callbacks and promise chains.</dd>
+
+    <dt>bcrypt</dt>
+    <dd>A password hashing library that combines a user's password with a salt and hashes it so the plain-text password is never stored.</dd>
+
+    <dt>Callback</dt>
+    <dd>A function passed to another function to be invoked when an operation completes; central to Node.js's asynchronous model.</dd>
+
+    <dt>Chai / Mocha</dt>
+    <dd>Chai is an assertion library; Mocha is a testing framework. Together they let you write and run tests.</dd>
+
+    <dt>connect-flash</dt>
+    <dd>Express.js middleware that stores temporary messages in a session and displays them on the next page load.</dd>
+
+    <dt>Cookie</dt>
+    <dd>A small file stored on the client by the browser and sent back to the server with each request, used here for session data.</dd>
+
+    <dt>CRUD</dt>
+    <dd>Create, Read, Update, Delete — the four fundamental operations on data in an application.</dd>
+
+    <dt>EJS (Embedded JavaScript)</dt>
+    <dd>A templating engine that lets you embed JavaScript inside HTML views, using <code>&lt;% %&gt;</code> and <code>&lt;%= %&gt;</code> tags.</dd>
+
+    <dt>Event loop</dt>
+    <dd>Node.js's single-threaded mechanism for handling asynchronous tasks, queuing work and offloading heavy operations to the host system.</dd>
+
+    <dt>Express.js</dt>
+    <dd>A web framework for Node.js that provides routing, middleware, view rendering, and static file serving out of the box.</dd>
+
+    <dt>Flash message</dt>
+    <dd>A short notification (success or error) stored in a session and shown once on the next page, used with connect-flash.</dd>
+
+    <dt>fs (file system) module</dt>
+    <dd>A Node.js core module for reading and writing files, used to serve HTML files and static assets.</dd>
+
+    <dt>HTTP method</dt>
+    <dd>The type of request: GET (retrieve), POST (submit), PUT (update), DELETE (remove).</dd>
+
+    <dt>JWT (JSON Web Token)</dt>
+    <dd>A signed or encrypted token containing user data, used to authenticate API requests without a browser session.</dd>
+
+    <dt>Middleware</dt>
+    <dd>A function that runs between the incoming request and the route handler; can modify requests and responses or pass control with <code>next()</code>.</dd>
+
+    <dt>Mongoose</dt>
+    <dd>An object-document mapper (ODM) that provides schemas, models, and queries for MongoDB.</dd>
+
+    <dt>MVC (model-view-controller)</dt>
+    <dd>An architectural pattern that separates data (models), display (views), and logic (controllers).</dd>
+
+    <dt>npm (Node Package Manager)</dt>
+    <dd>The package manager for Node.js; used to install external packages, manage dependencies, and run scripts.</dd>
+
+    <dt>ObjectId</dt>
+    <dd>A unique MongoDB identifier assigned to every document, used for lookups and model associations.</dd>
+
+    <dt>Passport.js</dt>
+    <dd>Authentication middleware for Node.js; handles strategies like local login and integrates with express-session.</dd>
+
+    <dt>Polling / long polling</dt>
+    <dd>Techniques for repeatedly requesting fresh data from the server. Long polling keeps requests open longer to reduce frequency.</dd>
+
+    <dt>Promise</dt>
+    <dd>A JavaScript object that represents the eventual result of an asynchronous operation, with <code>.then()</code> and <code>.catch()</code> methods.</dd>
+
+    <dt>REPL (Read-Evaluate-Print Loop)</dt>
+    <dd>An interactive Node.js shell for running JavaScript one line at a time.</dd>
+
+    <dt>Route</dt>
+    <dd>A mapping between an HTTP method + URL path and the code that handles requests to that path.</dd>
+
+    <dt>Schema</dt>
+    <dd>A Mongoose blueprint describing the fields, types, and validations of documents in a collection.</dd>
+
+    <dt>Session</dt>
+    <dd>Server-side storage of data about a user's interaction with the application across multiple requests.</dd>
+
+    <dt>Socket.io</dt>
+    <dd>A library that adds web-socket capabilities to a Node.js server for real-time communication.</dd>
+
+    <dt>Static file</dt>
+    <dd>A file (image, CSS, client-side JavaScript) served to the browser without server-side processing.</dd>
+
+    <dt>TDD (test-driven development)</dt>
+    <dd>Writing tests before implementation; tests define the behavior the code must satisfy.</dd>
+
+    <dt>Virtual attribute</dt>
+    <dd>A computed property on a Mongoose model that is not stored in the database (e.g., <code>fullName</code>).</dd>
+
+    <dt>Web server</dt>
+    <dd>Software that responds to requests over the internet by loading, processing, or generating data.</dd>
+
+    <dt>Web socket</dt>
+    <dd>A protocol that provides a persistent, bidirectional connection between client and server for real-time data.</dd>
+  </dl>
+
+  <div class="book-nav">
+    <button class="nav-button" data-nav="prev">← Appendix B</button>
+    <button class="nav-button" data-nav="next">Back Cover →</button>
+  </div>
+</section>
+
+<!-- ============================================================
+     BACK COVER
+     ============================================================ -->
+<section class="book-page cover-page back-cover" id="back">
+  <p class="cover-series">The Journey Continues</p>
+  <h1>Keep Building</h1>
+  <p class="cover-subtitle">You've taken Node.js from "hello, universe" to a deployed, real-time, authenticated web application. The tools are yours now.</p>
+  <p class="cover-note">
+    Every route, model, session, socket, and test you've written is a stepping stone.<br>
+    Extend the chat. Add payments. Build a mobile client. Ship something.<br>
+    The Node.js ecosystem rewards curiosity and practice.
+  </p>
+  <p class="cover-note" style="font-size:.9rem; font-style:italic;">
+    Refactored from <em>Get Programming with Node.js</em> by Jonathan Wexler, with gratitude for its steady, bootcamp-style pacing and its clarity about how a full-stack JavaScript application fits together. All mistakes in the retelling are the adapter's own.
+  </p>
+  <button class="nav-button" data-nav="first">↺ Begin Again</button>
+  <div class="cover-credit">
+    Refactored &amp; illustrated by<br>
+    <a href="https://agunechemba.name.ng" target="_blank" rel="noopener">Agunechemba Ekene</a>
+  </div>
+</section>
+
+<script src="script.js"></script>
+</body>
+</html>
